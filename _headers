@@ -1,0 +1,4 @@
+/docs/*.pdf
+  Content-Type: application/pdf
+/docs/*.docx
+  Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document

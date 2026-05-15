@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mountain Vista Estates — Community Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream:      #faf6ef;
+      --warm-white: #fff9f2;
+      --sand:       #e8d9c0;
+      --tan:        #c9a97a;
+      --brown:      #8b6340;
+      --dark:       #3a2a1a;
+      --pine:       #4a6741;
+      --pine-light: #6a9165;
+      --sky:        #7aa3b8;
+      --accent:     #c0622a;
+      --muted:      #9a8070;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Lato', sans-serif;
+
+      --shadow-soft: 0 4px 24px rgba(58,42,26,0.08);
+      --shadow-card: 0 2px 12px rgba(58,42,26,0.10);
+      --radius:    4px;
+      --radius-lg: 10px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,246,239,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--brown); letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--pine); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--dark); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-toggle {
+      display: none; background: none; border: none;
+      cursor: pointer; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: 0.3s; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Two-panel split — desktop only */
+    .hero-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      position: relative;
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .hero-panel:hover img { transform: scale(1.04); }
+
+    /* dark overlay on each panel */
+    .hero-panel::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(20,10,5,0.15) 0%, rgba(20,10,5,0.65) 100%);
+    }
+
+    /* centre divider line — desktop only */
+    .hero-panels::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      background: rgba(255,255,255,0.3);
+      z-index: 3;
+      transform: translateX(-50%);
+    }
+
+    /* label on each panel */
+    .hero-panel-label {
+      position: absolute;
+      bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+      z-index: 4;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.25rem 0.85rem;
+      border-radius: 99px;
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* centred overlay content */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      z-index: 5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+    .hero-overlay > * { pointer-events: auto; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 0.35rem 1.1rem; border-radius: 99px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4);
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 em { font-style: italic; color: #ffd4a0; }
+
+    .hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.95);
+      margin: 1rem 0 2rem;
+      max-width: 480px;
+      font-weight: 400;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Sign strip (mobile: shown below hero; desktop: hidden — sign is in panel) ── */
+    .sign-strip {
+      display: none; /* hidden on desktop — sign already visible in hero panel */
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem; border-radius: 99px;
+      font-family: var(--font-body);
+      font-size: 0.875rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 18px rgba(192,98,42,0.45);
+    }
+    .btn-primary:hover { background: #a8521f; transform: translateY(-2px); }
+    .btn-outline {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(4px);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.28); transform: translateY(-2px); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 6;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll-hint svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      background: var(--dark); color: #fff;
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .stat-item { padding: 1.6rem 3rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--tan); }
+    .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.15rem; }
+
+    /* ── Sections ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pine); margin-bottom: 0.6rem; }
+    .section-header h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 600; color: var(--dark); line-height: 1.2; }
+    .section-header p { color: var(--muted); max-width: 520px; margin: 0.8rem auto 0; font-size: 0.97rem; }
+    .divider { width: 48px; height: 3px; background: var(--tan); margin: 1rem auto 0; border-radius: 2px; }
+
+    /* ── Announcements ── */
+    #announcements { background: var(--warm-white); }
+    .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .announcement-card {
+      background: #fff; border-radius: var(--radius-lg); padding: 1.8rem;
+      border-left: 4px solid var(--tan); box-shadow: var(--shadow-card);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .announcement-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+    .announcement-card.urgent { border-left-color: var(--accent); }
+    .ann-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.2rem 0.7rem; border-radius: 99px;
+      background: var(--sand); color: var(--brown); margin-bottom: 0.8rem;
+    }
+    .ann-tag.urgent-tag { background: #fdecd8; color: var(--accent); }
+    .announcement-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--dark); }
+    .announcement-card p { font-size: 0.9rem; color: var(--muted); }
+    .ann-date { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; letter-spacing: 0.04em; }
+
+    /* ── Boards ── */
+    #boards { background: var(--cream); }
+    .boards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .board-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+    .board-header { padding: 2rem 2rem 1.5rem; color: #fff; }
+    .board-header.water { background: linear-gradient(135deg, #3a6b7a, #5d9aad); }
+    .board-header.committee { background: linear-gradient(135deg, #4a6741, #6e9e64); }
+    .board-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .board-header h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; }
+    .board-header p { font-size: 0.88rem; opacity: 0.85; margin-top: 0.3rem; }
+    .board-body { background: #fff; padding: 1.8rem 2rem; }
+    .board-body h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .member-list { list-style: none; }
+    .member-list li { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid var(--sand); font-size: 0.9rem; }
+    .member-list li:last-child { border-bottom: none; }
+    .member-role { font-size: 0.75rem; color: var(--muted); font-weight: 700; letter-spacing: 0.06em; }
+
+    /* ── Meetings ── */
+    #meetings { background: var(--warm-white); }
+    .meetings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .meeting-card {
+      background: #fff; border-radius: var(--radius-lg); padding: 1.8rem;
+      box-shadow: var(--shadow-card); display: flex; gap: 1.4rem; align-items: flex-start;
+      transition: transform 0.2s;
+    }
+    .meeting-card:hover { transform: translateY(-3px); }
+    .meeting-date-block { background: var(--dark); color: #fff; border-radius: var(--radius); padding: 0.6rem 1rem; text-align: center; min-width: 60px; flex-shrink: 0; }
+    .meeting-month { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+    .meeting-day { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; line-height: 1; }
+    .meeting-info h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .meeting-info p { font-size: 0.85rem; color: var(--muted); }
+    .meeting-board-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.6rem; border-radius: 99px; margin-top: 0.6rem; }
+    .tag-water { background: #daf0f7; color: #3a6b7a; }
+    .tag-committee { background: #d8f0d5; color: #4a6741; }
+
+    /* ── Financials ── */
+    #financials { background: var(--cream); }
+    .financials-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .finance-card { background: #fff; border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-card); }
+    .finance-card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-bottom: 1.4rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--sand); }
+    .finance-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--cream); font-size: 0.9rem; }
+    .finance-row:last-child { border-bottom: none; }
+    .finance-row .label { color: var(--muted); }
+    .finance-row .amount { font-weight: 700; color: var(--dark); }
+    .finance-row .amount.positive { color: var(--pine); }
+    .finance-row .amount.negative { color: var(--accent); }
+    .finance-row.total { font-weight: 700; border-top: 2px solid var(--sand); margin-top: 0.5rem; padding-top: 1rem; }
+    .doc-list { list-style: none; }
+    .doc-list li { display: flex; align-items: center; gap: 0.8rem; padding: 0.75rem 0; border-bottom: 1px solid var(--sand); font-size: 0.9rem; }
+    .doc-list li:last-child { border-bottom: none; }
+    .doc-icon { font-size: 1.2rem; }
+    .doc-link { color: var(--brown); text-decoration: none; font-weight: 700; }
+    .doc-link:hover { color: var(--accent); text-decoration: underline; }
+    .doc-date { font-size: 0.78rem; color: var(--muted); margin-left: auto; }
+
+    /* ── Minutes ── */
+    #minutes { background: var(--warm-white); }
+    .minutes-table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    thead tr { background: var(--dark); color: #fff; }
+    thead th { padding: 1rem 1.2rem; text-align: left; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    tbody tr { background: #fff; border-bottom: 1px solid var(--sand); transition: background 0.15s; }
+    tbody tr:hover { background: var(--warm-white); }
+    td { padding: 1rem 1.2rem; color: var(--dark); }
+    td a { color: var(--brown); font-weight: 700; text-decoration: none; }
+    td a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* ── Contact ── */
+    #contact { background: var(--cream); }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+    .contact-info h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }
+    .contact-info p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.9rem; }
+    .contact-detail-icon { font-size: 1.1rem; margin-top: 0.1rem; }
+    .contact-detail strong { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+    .contact-form { background: #fff; border-radius: var(--radius-lg); padding: 2.4rem; box-shadow: var(--shadow-card); }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--sand); border-radius: var(--radius);
+      font-family: var(--font-body); font-size: 0.92rem; color: var(--dark);
+      background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--brown); box-shadow: 0 0 0 3px rgba(139,99,64,0.12); background: #fff; }
+    textarea { resize: vertical; min-height: 130px; }
+    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b6340' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+    .form-submit { width: 100%; padding: 1rem; font-size: 0.95rem; }
+    .form-success { display: none; text-align: center; padding: 2rem; color: var(--pine); font-family: var(--font-display); font-size: 1.2rem; }
+
+    /* ── Footer ── */
+    footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 3.5rem 2rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+    .footer-brand .nav-logo { color: var(--tan); font-size: 1.3rem; }
+    .footer-brand p { font-size: 0.87rem; margin-top: 0.8rem; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--tan); }
+    .footer-bottom { max-width: 1100px; margin: 2.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+    /* ── Board cards (updated) ── */
+    .boards-section { background: var(--warm-white); }
+    .boards-section .boards-grid { margin-top: 0; }
+    .board-card { background: #fff; border-radius: 10px; box-shadow: var(--shadow-card); overflow: hidden; display: flex; flex-direction: column; }
+    .board-card-header { padding: 28px 28px 22px; border-bottom: 1px solid var(--sand); }
+    .water-header     { border-top: 4px solid var(--pine); }
+    .committee-header { border-top: 4px solid var(--tan); }
+    .board-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--pine); color: #fff; border-radius: 3px; padding: 3px 8px; margin-bottom: 10px; }
+    .committee-badge { background: var(--tan); color: var(--dark); }
+    .board-card-header h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+    .board-card-header p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+    .member-list { list-style: none; padding: 8px 0; flex: 1; }
+    .member-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 28px; border-bottom: 1px solid rgba(232,217,192,0.5); gap: 12px; }
+    .member-row:last-child { border-bottom: none; }
+    .member-info { display: flex; flex-direction: column; gap: 1px; }
+    .member-name { font-size: 0.9rem; font-weight: 700; color: var(--dark); }
+    .member-role { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+    .member-email { display: inline-flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 500; color: var(--pine); text-decoration: none; padding: 5px 10px; border: 1px solid rgba(74,103,65,0.25); border-radius: 4px; white-space: nowrap; transition: background 0.18s, color 0.18s, border-color 0.18s; flex-shrink: 0; }
+    .member-email:hover { background: var(--pine); color: #fff; border-color: var(--pine); }
+    .board-footer { padding: 18px 28px; background: rgba(232,217,192,0.2); border-top: 1px solid var(--sand); }
+    .btn-board { display: inline-flex; align-items: center; gap: 7px; font-size: 0.82rem; font-weight: 700; color: #fff; background: var(--pine); text-decoration: none; padding: 9px 18px; border-radius: 4px; transition: background 0.18s, transform 0.15s; letter-spacing: 0.02em; }
+    .btn-board:hover { background: var(--pine-light); transform: translateY(-1px); }
+    .btn-committee { background: var(--brown); }
+    .btn-committee:hover { background: var(--tan); color: var(--dark); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--sand); padding: 1.5rem 2rem; gap: 1.2rem; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      /* Hero: show only the sunset panel, full-bleed */
+      .hero { height: 100svh; min-height: 520px; }
+      .hero-panels {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: 100%;
+      }
+      /* Hide the sign panel on mobile — it shows in the strip below */
+      .hero-panel:nth-child(2) { display: none; }
+      /* Remove the divider line */
+      .hero-panels::before { display: none; }
+      /* Hide the "Evening at the pond" label — no room */
+      .hero-panel-label { display: none; }
+      /* Deepen the overlay for text legibility */
+      .hero-panel::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.15) 0%,
+          rgba(0,0,0,0.55) 40%,
+          rgba(0,0,0,0.72) 100%
+        );
+      }
+      /* Title sizing */
+      .hero h1 { font-size: 2.4rem; }
+      /* Subtitle pill — full width on mobile */
+      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+      /* Stack buttons */
+      .hero-btns { flex-direction: column; align-items: center; width: 100%; }
+      .hero-btns .btn { width: 100%; max-width: 320px; text-align: center; }
+
+      /* Sign strip: visible on mobile */
+      .sign-strip {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        background: var(--dark);
+        padding: 1.2rem 1.5rem;
+        overflow: hidden;
+      }
+      .sign-strip img {
+        width: 80px; height: 80px;
+        object-fit: cover; object-position: center 30%;
+        border-radius: var(--radius);
+        flex-shrink: 0;
+        border: 2px solid var(--tan);
+      }
+      .sign-strip-text { color: #fff; }
+      .sign-strip-text strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1rem; font-weight: 600;
+        color: var(--tan);
+      }
+      .sign-strip-text span {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.55);
+        letter-spacing: 0.06em;
+      }
+
+      /* Rest of layout */
+      .boards-grid, .financials-layout, .contact-layout, .footer-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.2rem 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Mountain <span>Vista</span> Estates</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#announcements">News</a></li>
+      <li><a href="#boards">Boards</a></li>
+      <li><a href="#meetings">Meetings</a></li>
+      <li><a href="#financials">Financials</a></li>
+      <li><a href="#minutes">Minutes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-panels">
+      <!-- Panel 1: Sunset -->
+      <div class="hero-panel">
+        <img src="images/sunset.jpg" alt="Stunning sunset over Mountain Vista Estates" loading="eager" />
+        <span class="hero-panel-label">Evening at the pond</span>
+      </div>
+      <!-- Panel 2: Sign -->
+      <div class="hero-panel">
+        <img src="images/sign.jpg" alt="Mountain Vista Estates entrance sign" loading="eager" />
+        <span class="hero-panel-label">Welcome home</span>
+      </div>
+    </div>
+
+    <!-- Centred overlay -->
+    <div class="hero-overlay">
+      <div class="hero-eyebrow">Cardston County, Alberta</div>
+      <h1>Welcome to<br /><em>Mountain Vista Estates</em></h1>
+      <p class="hero-sub">Your community hub for news, meetings, and resident resources — keeping all 42 households connected and informed.</p>
+      <div class="hero-btns">
+        <a href="#announcements" class="btn btn-primary">See Latest News</a>
+        <a href="#contact" class="btn btn-outline">Contact a Board</a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <svg viewBox="0 0 16 16"><polyline points="2,5 8,11 14,5"/></svg>
+    </div>
+  </header>
+
+  <!-- SIGN STRIP (mobile only) -->
+  <div class="sign-strip">
+    <img src="images/sign.jpg" alt="Mountain Vista Estates entrance sign" />
+    <div class="sign-strip-text">
+      <strong>Mountain Vista Estates</strong>
+      <span>Cardston County, AB · Est. Community</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-item reveal"><div class="stat-num">42</div><div class="stat-label">Residential Lots</div></div>
+    <div class="stat-item reveal"><div class="stat-num">2</div><div class="stat-label">Governing Boards</div></div>
+    <div class="stat-item reveal"><div class="stat-num">1</div><div class="stat-label">Water Co-op</div></div>
+    <div class="stat-item reveal"><div class="stat-num">2025</div><div class="stat-label">Fiscal Year</div></div>
+  </div>
+
+  <!-- ANNOUNCEMENTS -->
+  <section id="announcements">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Latest Updates</div>
+        <h2>Community Announcements</h2>
+        <div class="divider"></div>
+        <p>Important notices from your Water Co-op and Community Committee.</p>
+      </div>
+      <div class="announcements-grid">
+        <div class="announcement-card urgent reveal">
+          <div class="ann-tag urgent-tag">🚨 Urgent</div>
+          <h3>[Placeholder] Water System Maintenance Notice</h3>
+          <p>Scheduled maintenance will require a temporary water shutoff on [Date] from [Time] to [Time]. Please store water in advance.</p>
+          <div class="ann-date">📅 Posted: [Month DD, YYYY] — Water Co-op</div>
+        </div>
+        <div class="announcement-card reveal">
+          <div class="ann-tag">📅 Event</div>
+          <h3>[Placeholder] Annual General Meeting — Water Co-op</h3>
+          <p>The Water Co-op AGM is scheduled for [Date] at [Location]. All residents are encouraged to attend. Agenda posted 14 days prior.</p>
+          <div class="ann-date">📅 Posted: [Month DD, YYYY] — Water Co-op</div>
+        </div>
+        <div class="announcement-card reveal">
+          <div class="ann-tag">🌿 Community</div>
+          <h3>[Placeholder] Spring Beautification Day</h3>
+          <p>Join your neighbours for a community cleanup and planting event on [Date]. Supplies provided. All residents welcome!</p>
+          <div class="ann-date">📅 Posted: [Month DD, YYYY] — Community Committee</div>
+        </div>
+        <div class="announcement-card reveal">
+          <div class="ann-tag">📋 Notice</div>
+          <h3>[Placeholder] Annual General Meeting — Community Committee</h3>
+          <p>The Community Committee AGM will be held on [Date] at [Time], [Location]. Financial reports and board elections on the agenda.</p>
+          <div class="ann-date">📅 Posted: [Month DD, YYYY] — Community Committee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOARDS -->
+  <section id="boards" class="section boards-section">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Governance</div>
+        <h2>Volunteer Leadership</h2>
+        <div class="divider"></div>
+        <p>Both boards are made up of community volunteers elected annually at the AGM. All roles are unpaid — we are not a Homeowners Association (HOA).</p>
+      </div>
+
+      <div class="boards-grid">
+
+        <!-- ── WATER CO-OP BOARD ── -->
+        <div class="board-card reveal">
+          <div class="board-card-header water-header">
+            <span class="board-badge">Water Co-op</span>
+            <h3>Water Co-op Board</h3>
+            <p>Responsible for water supply, infrastructure, snow removal, and regulatory compliance.</p>
+          </div>
+          <ul class="member-list">
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Keith Wagner</span><span class="member-role">President</span></div>
+              <a class="member-email" href="mailto:catapultdesigns@shaw.ca" aria-label="Email Keith Wagner">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Dave May</span><span class="member-role">Treasurer</span></div>
+              <a class="member-email" href="mailto:billybob_61@yahoo.com" aria-label="Email Dave May">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Shane McMorrow</span><span class="member-role">Lead Operator</span></div>
+              <a class="member-email" href="mailto:shanemcmorrow@yahoo.ca" aria-label="Email Shane McMorrow">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Executive Assistant</span></div>
+              <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Sarah Greer</span><span class="member-role">Member</span></div>
+              <a class="member-email" href="mailto:greer.sarah@gmail.com" aria-label="Email Sarah Greer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Member</span></div>
+              <a class="member-email" href="mailto:kylee.gairns666@gmail.com" aria-label="Email Kylee Gairns">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+          </ul>
+          <div class="board-footer">
+            <a href="mailto:mountainvistaad@gmail.com" class="btn-board">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email the Water Co-op
+            </a>
+          </div>
+        </div>
+
+        <!-- ── COMMUNITY COMMITTEE ── -->
+        <div class="board-card reveal">
+          <div class="board-card-header committee-header">
+            <span class="board-badge committee-badge">Community Committee</span>
+            <h3>Community Committee</h3>
+            <p>Responsible for community events, common area maintenance, garbage, pond, and beautification.</p>
+          </div>
+          <ul class="member-list">
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:kylee.gairns666@gmail.com" aria-label="Email Kylee Gairns">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Daniel Saretsky</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:dsaretsky@hotmail.com" aria-label="Email Daniel Saretsky">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Dave May</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:billybob_61@yahoo.com" aria-label="Email Dave May">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Debra Glaister</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:debra.glaister@gmail.com" aria-label="Email Debra Glaister">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Caroline Allain</span><span class="member-role">Committee Member</span></div>
+              <a class="member-email" href="mailto:mcallain@hotmail.com" aria-label="Email Caroline Allain">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+          </ul>
+          <div class="board-footer">
+            <a href="mailto:mountainvistaad@gmail.com" class="btn-board btn-committee">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email the Committee
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /.boards-grid -->
+    </div>
+  </section>
+
+  <!-- MEETINGS -->
+  <section id="meetings">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Calendar</div>
+        <h2>Upcoming Meetings</h2>
+        <div class="divider"></div>
+        <p>Stay informed — all scheduled meetings for both boards listed here.</p>
+      </div>
+      <div class="meetings-grid">
+        <div class="meeting-card reveal">
+          <div class="meeting-date-block"><div class="meeting-month">Jan</div><div class="meeting-day">15</div></div>
+          <div class="meeting-info">
+            <h3>[Placeholder] Water Co-op Board Meeting</h3>
+            <p>[Time] · [Location]</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Agenda: [Topic 1], [Topic 2]</p>
+            <span class="meeting-board-tag tag-water">Water Co-op</span>
+          </div>
+        </div>
+        <div class="meeting-card reveal">
+          <div class="meeting-date-block"><div class="meeting-month">Feb</div><div class="meeting-day">8</div></div>
+          <div class="meeting-info">
+            <h3>[Placeholder] Community Committee Meeting</h3>
+            <p>[Time] · [Location]</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Agenda: [Topic 1], [Topic 2]</p>
+            <span class="meeting-board-tag tag-committee">Committee</span>
+          </div>
+        </div>
+        <div class="meeting-card reveal">
+          <div class="meeting-date-block"><div class="meeting-month">Mar</div><div class="meeting-day">22</div></div>
+          <div class="meeting-info">
+            <h3>[Placeholder] Annual General Meeting — Water Co-op</h3>
+            <p>[Time] · [Location]</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Financials, board elections, resident Q&amp;A</p>
+            <span class="meeting-board-tag tag-water">Water Co-op AGM</span>
+          </div>
+        </div>
+        <div class="meeting-card reveal">
+          <div class="meeting-date-block"><div class="meeting-month">Apr</div><div class="meeting-day">5</div></div>
+          <div class="meeting-info">
+            <h3>[Placeholder] Annual General Meeting — Community Committee</h3>
+            <p>[Time] · [Location]</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Financials, board elections, resident Q&amp;A</p>
+            <span class="meeting-board-tag tag-committee">Committee AGM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIALS -->
+  <section id="financials">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Transparency</div>
+        <h2>Financial Overview</h2>
+        <div class="divider"></div>
+        <p>Annual budget summaries and AGM financial reports for the Water Co-op, updated each fiscal year.</p>
+      </div>
+      <div class="financials-layout">
+        <div>
+          <!-- 2026 Budget (most recent, from 2026 AGM Report) -->
+          <div class="finance-card reveal" style="margin-bottom:1.5rem">
+            <h3>💧 Water Co-op — 2026 Approved Budget</h3>
+            <div class="finance-row"><span class="label">Annual Fee per Lot</span><span class="amount">$574</span></div>
+            <div class="finance-row"><span class="label">Irrigation Water</span><span class="amount negative">−$8,500</span></div>
+            <div class="finance-row"><span class="label">Electricity (Cistern + Irrigation)</span><span class="amount negative">−$3,100</span></div>
+            <div class="finance-row"><span class="label">Insurance</span><span class="amount negative">−$4,000</span></div>
+            <div class="finance-row"><span class="label">Maintenance / Supplies</span><span class="amount negative">−$1,200</span></div>
+            <div class="finance-row"><span class="label">Cistern Cleaning</span><span class="amount negative">−$1,200</span></div>
+            <div class="finance-row"><span class="label">Bank Fees &amp; AB Fed Co-ops</span><span class="amount negative">−$1,000</span></div>
+            <div class="finance-row total"><span class="label">Total Budget</span><span class="amount">$17,800</span></div>
+          </div>
+          <!-- 2025 Actuals (from 2026 AGM Report) -->
+          <div class="finance-card reveal">
+            <h3>💧 Water Co-op — 2025 Year-End Actuals</h3>
+            <div class="finance-row"><span class="label">Total Revenue</span><span class="amount positive">$25,661</span></div>
+            <div class="finance-row"><span class="label">Total Expenses</span><span class="amount negative">−$25,134</span></div>
+            <div class="finance-row"><span class="label">Net Income (Surplus)</span><span class="amount positive">$527</span></div>
+            <div class="finance-row"><span class="label">Reserve Fund Balance</span><span class="amount positive">$39,362</span></div>
+            <div class="finance-row"><span class="label">Cash on Hand</span><span class="amount positive">$5,246</span></div>
+            <div class="finance-row total"><span class="label">Total Assets</span><span class="amount positive">$132,870</span></div>
+          </div>
+        </div>
+        <div>
+          <!-- AGM Reports archive -->
+          <div class="finance-card reveal">
+            <h3>📂 AGM Reports — Archive</h3>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.2rem">Annual General Meeting reports include full financial statements, budget approvals, board elections, and community updates.</p>
+            <ul class="doc-list">
+              <li>
+                <span class="doc-icon">📊</span>
+                <div><a href="docs/2026_AGM_Report.pdf" class="doc-link" target="_blank">2026 AGM Report</a><div style="font-size:0.8rem;color:var(--muted)">April 18, 2026 · 2025 Financials · 2026 Budget &amp; Fees</div></div>
+                <span class="doc-date">2026</span>
+              </li>
+              <li>
+                <span class="doc-icon">📊</span>
+                <div><a href="docs/2025_AGM_Report.pdf" class="doc-link" target="_blank">2025 AGM Report</a><div style="font-size:0.8rem;color:var(--muted)">April 12, 2025 · 2024 Financials · 2025 Budget &amp; Fees</div></div>
+                <span class="doc-date">2025</span>
+              </li>
+              <li>
+                <span class="doc-icon">📊</span>
+                <div><a href="docs/2024_AGM_Report.pdf" class="doc-link" target="_blank">2024 AGM Report</a><div style="font-size:0.8rem;color:var(--muted)">April 20, 2024 · 2023 Financials · 2024 Budget &amp; Fees</div></div>
+                <span class="doc-date">2024</span>
+              </li>
+              <li>
+                <span class="doc-icon">📊</span>
+                <div><a href="docs/2023_AGM_Report.pdf" class="doc-link" target="_blank">2023 AGM Report</a><div style="font-size:0.8rem;color:var(--muted)">April 15, 2023 · 2022 Financials · 2023 Budget &amp; Fees</div></div>
+                <span class="doc-date">2023</span>
+              </li>
+              <li>
+                <span class="doc-icon">📊</span>
+                <div><a href="docs/2022_AGM_Report.pdf" class="doc-link" target="_blank">2022 AGM Report</a><div style="font-size:0.8rem;color:var(--muted)">April 2, 2022 · 2021 Financials · 2022 Budget &amp; Fees</div></div>
+                <span class="doc-date">2022</span>
+              </li>
+            </ul>
+            <br/>
+            <h3 style="font-size:1rem;margin-bottom:1rem;padding-top:1rem;border-top:1px solid var(--sand);">📋 Governance Documents</h3>
+            <ul class="doc-list">
+              <li>
+                <span class="doc-icon">🚨</span>
+                <div><a href="docs/Emergency_Response_Plan.docx" class="doc-link" download>Emergency Response Plan</a><div style="font-size:0.8rem;color:var(--muted)">Last updated April 1, 2023 · Water Co-op</div></div>
+                <span class="doc-date">2023</span>
+              </li>
+              <li>
+                <span class="doc-icon">📜</span>
+                <div><a href="docs/Rules_and_Regulations.docx" class="doc-link" download>Rules &amp; Regulations</a><div style="font-size:0.8rem;color:var(--muted)">Co-op responsibilities, social committee &amp; community guidelines</div></div>
+                <span class="doc-date">2023</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINUTES -->
+  <section id="minutes">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Records</div>
+        <h2>Meeting Minutes</h2>
+        <div class="divider"></div>
+        <p>Official minutes from all AGM meetings, available for all residents to review and download.</p>
+      </div>
+      <div class="minutes-table-wrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Board</th><th>Meeting Type</th><th>Key Topics</th><th>Document</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>April 12, 2025</td>
+              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td>AGM</td>
+              <td>Budget approved $580/lot · Cistern cleaning · Generator install · Sarah Greer auditor · Kerri Kryger resigned · Sarah Greer &amp; Kylee Gairns joined board</td>
+              <td><a href="docs/agm_2025_minutes.docx" download>Download ↓</a></td>
+            </tr>
+            <tr>
+              <td>April 20, 2024</td>
+              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td>AGM</td>
+              <td>Budget approved $727/lot · Generator purchase approved · Weed spraying vote · Gina Rebere joins as Executive Assistant · Will Prince auditor</td>
+              <td><a href="docs/agm_2024_minutes.docx" download>Download ↓</a></td>
+            </tr>
+            <tr>
+              <td>April 2, 2022</td>
+              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td>AGM</td>
+              <td>Budget approved $540/lot · Common space &amp; roadway acquisition confirmed · Will Prince elected auditor · Short-term rental guidelines discussed</td>
+              <td><a href="docs/agm_2022_minutes.pdf" download>Download ↓</a></td>
+            </tr>
+            <tr>
+              <td>May 15, 2021</td>
+              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td>AGM (2020 &amp; 2021)</td>
+              <td>Combined 2020 &amp; 2021 AGM via Zoom · New board members elected · HOA investigation concluded · Common space acquisition vote carried · Seasonal fee structure defeated</td>
+              <td><a href="docs/agm_2020_2021_minutes.docx" download>Download ↓</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--muted);text-align:center;">
+        AGM Reports (which include full financial statements) are available in the <a href="#financials" style="color:var(--brown);font-weight:700;">Financials section</a> above.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h2>Contact a Board</h2>
+        <div class="divider"></div>
+        <p>Send a message, question, or request directly to the appropriate board.</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-info reveal">
+          <h3>We're here to help.</h3>
+          <p>Use the form to reach the Water Co-op or Community Committee. All messages are reviewed by the respective board and you'll receive a response as soon as possible.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">💧</div>
+            <div><strong>Water Co-op</strong><a href="mailto:mountainvistaad@gmail.com" style="color:var(--brown);">mountainvistaad@gmail.com</a></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🏘️</div>
+            <div><strong>Community Committee</strong><a href="mailto:mvecommittee@gmail.com" style="color:var(--brown);">mvecommittee@gmail.com</a></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div><strong>Location</strong>Mountain Vista Estates<br />Cardston County, AB T0K 1W0</div>
+          </div>
+          <div class="contact-detail" style="margin-top:1.5rem;padding:1.2rem;background:var(--sand);border-radius:var(--radius-lg);">
+            <div class="contact-detail-icon">⚠️</div>
+            <div><strong>Water Emergency?</strong>For urgent water issues (loss of service, contamination concerns), contact the Water Co-op emergency line: <strong>[Phone Number]</strong></div>
+          </div>
+        </div>
+        <div class="contact-form reveal">
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <div class="form-row">
+              <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" placeholder="Jane" required /></div>
+              <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" placeholder="Smith" required /></div>
+            </div>
+            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@email.com" required /></div>
+            <div class="form-group"><label for="address">Lot / Street Address (optional)</label><input type="text" id="address" name="address" placeholder="e.g. 12 Mountain Vista Dr" /></div>
+            <div class="form-group">
+              <label for="recipient">Send Message To</label>
+              <select id="recipient" name="recipient" required>
+                <option value="" disabled selected>— Select a board —</option>
+                <option value="Water Co-op">💧 Water Co-op</option>
+                <option value="Community Committee">🏘️ Community Committee</option>
+                <option value="Both Boards">📋 Both Boards</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" placeholder="e.g. Water pressure issue / Event idea / AGM question" required /></div>
+            <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe your question or request in as much detail as possible..." required></textarea></div>
+            <button type="submit" class="btn btn-primary form-submit">Send Message →</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            ✅ Thank you! Your message has been sent.<br />
+            <span style="font-family:var(--font-body);font-size:0.9rem;color:var(--muted)">The board will be in touch as soon as possible.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">Mountain <span style="color:var(--pine-light)">Vista</span> Estates</a>
+        <p>A small hamlet community in Cardston County, Alberta — served by our Water Co-op and Community Committee. This site is maintained as a resident information resource.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#announcements">Announcements</a></li>
+          <li><a href="#boards">Our Boards</a></li>
+          <li><a href="#meetings">Meetings</a></li>
+          <li><a href="#financials">Financials</a></li>
+          <li><a href="#minutes">Meeting Minutes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://www.abwaterco-op.com/" target="_blank" rel="noopener">AB Water Co-op Association ↗</a></li>
+          <li><a href="https://www.cardstoncounty.com/" target="_blank" rel="noopener">Cardston County ↗</a></li>
+          <li><a href="#financials">Financial Documents</a></li>
+          <li><a href="#minutes">Meeting Minutes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Mountain Vista Estates Community. All rights reserved.</span>
+      <span>mountainvista.yourdomain.ca</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Contact form success
+    document.getElementById('contactForm')?.addEventListener('submit', function() {
+      const form = this;
+      const success = document.getElementById('formSuccess');
+      setTimeout(() => { form.style.display = 'none'; success.style.display = 'block'; }, 800);
+    });
+  </script>
+
+</body>
+</html>
