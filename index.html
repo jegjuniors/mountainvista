@@ -482,6 +482,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#announcements">News</a></li>
       <li><a href="#boards">Boards</a></li>
+      <li><a href="#survey">Survey</a></li>
       <li><a href="#meetings">Meetings</a></li>
       <li><a href="#financials">Financials</a></li>
       <li><a href="#minutes">Minutes</a></li>
@@ -552,30 +553,54 @@
         <p>Important notices from your Water Co-op and Community Committee.</p>
       </div>
       <div class="announcements-grid">
-        <div class="announcement-card reveal">
-          <div class="ann-tag">💧 Water Co-op</div>
+
+        <!-- NEW: Survey Results card — pinned first -->
+        <div class="announcement-card reveal" style="border-left-color: var(--pine); background: linear-gradient(135deg, #fff 80%, #f0f5ef 100%);">
+          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📊 Survey Results</div>
+          <h3>2026 Community Survey — Results Are In!</h3>
+          <p>37 residents responded to the April 2026 Community Committee survey. Results are in on the pond, shed, weed spraying, events, dog park, and more. <a href="#survey" style="color:var(--pine);font-weight:700;">View the full results summary ↓</a></p>
+          <div style="margin-top:1rem;">
+            <a href="docs/MountainVista_Community_Survey_2026.pdf" download
+               style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:var(--pine);padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
+               onmouseover="this.style.background='var(--pine-light)'" onmouseout="this.style.background='var(--pine)'">
+              ⬇ Download Full Report (PDF)
+            </a>
+          </div>
+          <div class="ann-date">📅 Posted: May 15, 2026 — Community Committee</div>
+        </div>
+
+        <!-- Irrigation Water -->
+        <div class="announcement-card urgent reveal">
+          <div class="ann-tag urgent-tag">🚨 Water Co-op</div>
           <h3>Irrigation Water Turn-On — Date TBD</h3>
-          <p>Irrigation water will be turned on by the Uniform Irrigation District (UID) at their discretion — likely mid-May, but no advance notice is given. Please do not water lawns using cistern water; use the irrigation tap at the front of the property once it's live. The irrigation supply can also serve as emergency water for fire events.</p>
-          <div class="ann-date">📅 May 2026 — Water Co-op</div>
+          <p>The UID controls the timing of irrigation turn-on and provides no advance notice. Do not use your cistern water for irrigation — use the irrigation tap only.</p>
+          <div class="ann-date">📅 Posted: May 2026 — Water Co-op</div>
         </div>
+
+        <!-- Speed Bumps -->
         <div class="announcement-card reveal">
-          <div class="ann-tag">🚦 Community</div>
-          <h3>Speed Bumps &amp; Speed Sign Reinstalled</h3>
-          <p>The speed bumps have been reinstalled for the season — thanks to Caroline, Dave, and Cory for their help getting them in! The speed sign is also back up, with thanks to Geoff for flagging placement and Shane and Caroline for getting it in the ground. Go team!</p>
-          <div class="ann-date">📅 May 7, 2026 — Community Committee</div>
+          <div class="ann-tag">🏘️ Community</div>
+          <h3>Speed Bumps &amp; Sign Reinstalled</h3>
+          <p>Our speed bumps and entrance sign are back in place for the season. Big thanks to Caroline, Dave, Cory, Geoff, and Shane for getting it all done!</p>
+          <div class="ann-date">📅 Posted: May 7, 2026 — Community Committee</div>
         </div>
+
+        <!-- Pond Fountain -->
         <div class="announcement-card reveal">
-          <div class="ann-tag">⛲ Community</div>
+          <div class="ann-tag">🌊 Community</div>
           <h3>Pond Fountain Is In for the Season</h3>
-          <p>The pond fountain has been installed — a big thank you to Shane and everyone else who helped get it in the water. Enjoy the view!</p>
-          <div class="ann-date">📅 May 2, 2026 — Community Committee</div>
+          <p>The pond fountain has been installed and is running. Thanks to Shane for getting it in — the pond is looking great!</p>
+          <div class="ann-date">📅 Posted: May 2, 2026 — Community Committee</div>
         </div>
+
+        <!-- Septic Service -->
         <div class="announcement-card reveal">
-          <div class="ann-tag">🚿 Notice</div>
-          <h3>Septic Service — Jim Beck</h3>
-          <p>A reminder to check your tanks and arrange any needed pump-outs in advance of scheduled unavailability periods. When the garbage trailer is full and awaiting pickup, please take your garbage to the transfer station or hold it at your cabin. Thank you for your patience and cooperation.</p>
-          <div class="ann-date">📅 April 27, 2026 — Community Committee</div>
+          <div class="ann-tag">🔔 Notice</div>
+          <h3>Septic Service Reminder — Jim Beck</h3>
+          <p>Residents are encouraged to check their septic tanks and arrange pump-outs as needed. If your trailer is full, please use the transfer station. Contact Jim Beck for service.</p>
+          <div class="ann-date">📅 Posted: Apr 27, 2026 — Community Committee</div>
         </div>
+
       </div>
     </div>
   </section>
@@ -607,7 +632,20 @@
                 Email
               </a>
             </li>
-
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Dave May</span><span class="member-role">Treasurer</span></div>
+              <a class="member-email" href="mailto:billybob_61@yahoo.com" aria-label="Email Dave May">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Shane McMorrow</span><span class="member-role">Lead Operator</span></div>
+              <a class="member-email" href="mailto:shanemcmorrow@yahoo.ca" aria-label="Email Shane McMorrow">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Executive Assistant</span></div>
               <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
@@ -615,7 +653,13 @@
                 Email
               </a>
             </li>
-
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Sarah Greer</span><span class="member-role">Member</span></div>
+              <a class="member-email" href="mailto:greer.sarah@gmail.com" aria-label="Email Sarah Greer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </a>
+            </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Member</span></div>
               <a class="member-email" href="mailto:kylee.gairns666@gmail.com" aria-label="Email Kylee Gairns">
@@ -692,6 +736,120 @@
         </div>
 
       </div><!-- /.boards-grid -->
+    </div>
+  </section>
+
+  <!-- SURVEY RESULTS -->
+  <section id="survey" style="background: var(--cream);">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Community Input</div>
+        <h2>2026 Community Survey Results</h2>
+        <div class="divider"></div>
+        <p>37 residents responded to the Community Committee survey sent April 27, 2026. Here's what the community said.</p>
+      </div>
+
+      <!-- Summary widget -->
+      <div class="reveal" style="margin-bottom: 2.5rem;">
+        <div style="background:#fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden;">
+
+          <!-- Widget header -->
+          <div style="background: var(--dark); padding: 1.2rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--tan);margin-bottom:0.2rem;">At a Glance</div>
+              <div style="font-family:var(--font-display);font-size:1.2rem;color:#fff;font-weight:600;">Survey Summary — 37 Responses</div>
+            </div>
+            <a href="docs/MountainVista_Community_Survey_2026.pdf" download
+               style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:700;color:var(--dark);background:var(--tan);padding:0.6rem 1.2rem;border-radius:4px;text-decoration:none;white-space:nowrap;transition:background 0.2s;"
+               onmouseover="this.style.background='#d4b88a'" onmouseout="this.style.background='var(--tan)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Full Report
+            </a>
+          </div>
+
+          <!-- Approved items -->
+          <div style="padding: 1.2rem 2rem 0.4rem; border-bottom: 2px solid var(--sand);">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--pine);margin-bottom:0.8rem;">✓ Approved by Residents</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.6rem;margin-bottom:1rem;">
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#f0f7ee;border-radius:6px;border-left:3px solid var(--pine);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🏊 Pond Pellets (~$1,600)</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--pine);margin-left:0.5rem;white-space:nowrap;">54.1% Yes</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#f0f7ee;border-radius:6px;border-left:3px solid var(--pine);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🏚️ Equipment Shed (~$3,500)</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--pine);margin-left:0.5rem;white-space:nowrap;">70.3% Yes</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#f0f7ee;border-radius:6px;border-left:3px solid var(--pine);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🌿 Weed Spraying (Common Areas)</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--pine);margin-left:0.5rem;white-space:nowrap;">67.6% Yes</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#f0f7ee;border-radius:6px;border-left:3px solid var(--pine);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🎉 August Long Weekend Event</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--pine);margin-left:0.5rem;white-space:nowrap;">54.1% Yes</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#f0f7ee;border-radius:6px;border-left:3px solid var(--pine);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🎆 New Years Fireworks</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--pine);margin-left:0.5rem;white-space:nowrap;">56.8% Yes</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Not approved items -->
+          <div style="padding: 1.2rem 2rem 1.4rem;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;">✗ Not Supported by Residents</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.6rem;">
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#fdf3ee;border-radius:6px;border-left:3px solid var(--accent);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🚛 New Garbage Trailer</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--accent);margin-left:0.5rem;white-space:nowrap;">75.7% No</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#fdf3ee;border-radius:6px;border-left:3px solid var(--accent);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🐕 Dog Park</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--accent);margin-left:0.5rem;white-space:nowrap;">83.8% No</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#fdf3ee;border-radius:6px;border-left:3px solid var(--accent);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🐕 Dog Park Fencing (~$1,500)</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--accent);margin-left:0.5rem;white-space:nowrap;">91.9% No</span>
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:#fdf3ee;border-radius:6px;border-left:3px solid var(--accent);">
+                <span style="font-size:0.88rem;font-weight:600;color:var(--dark);">🐾 Stray Animal Medical Fund</span>
+                <span style="font-size:0.88rem;font-weight:700;color:var(--accent);margin-left:0.5rem;white-space:nowrap;">67.6% No</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Priority bar + download CTA row -->
+      <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;background:#fff;border-radius:var(--radius-lg);padding:1.4rem 2rem;box-shadow:var(--shadow-card);">
+        <div>
+          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;">Top Spending Priorities (1st choice)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--pine);color:#fff;font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:99px;">1st · Pond <span style="opacity:0.8;font-weight:400;">32.4%</span></span>
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--pine-light);color:#fff;font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:99px;">2nd · Shed <span style="opacity:0.8;font-weight:400;">27.0%</span></span>
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--tan);color:var(--dark);font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:99px;">3rd · Weed Spraying <span style="opacity:0.7;font-weight:400;">24.3%</span></span>
+            <span style="display:inline-flex;align-items:center;gap:0.3rem;background:var(--sand);color:var(--brown);font-size:0.8rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:99px;">4th · Garbage Trailer <span style="opacity:0.7;font-weight:400;">10.8%</span></span>
+          </div>
+        </div>
+        <a href="docs/MountainVista_Community_Survey_2026.pdf" download
+           style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.85rem;font-weight:700;color:#fff;background:var(--accent);padding:0.7rem 1.4rem;border-radius:4px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background 0.2s;"
+           onmouseover="this.style.background='#a8521f'" onmouseout="this.style.background='var(--accent)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Full PDF Report
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -849,13 +1007,6 @@
           </thead>
           <tbody>
             <tr>
-              <td>April 18, 2026</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM</td>
-              <td>Budget approved $574/lot · 2025 financials reviewed (surplus $527) · Sarah Greer auditor · Board elections · Generator confirmed · Community Committee annual meeting</td>
-              <td><a href="docs/2026_AGM_Report.pdf" download>AGM Report ↓</a><div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem">Minutes not yet available — report linked</div></td>
-            </tr>
-            <tr>
               <td>April 12, 2025</td>
               <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
               <td>AGM</td>
@@ -907,11 +1058,11 @@
           <p>Use the form to reach the Water Co-op or Community Committee. All messages are reviewed by the respective board and you'll receive a response as soon as possible.</p>
           <div class="contact-detail">
             <div class="contact-detail-icon">💧</div>
-            <div><strong>Water Co-op</strong><a href="mailto:mountainvistaad@gmail.com" style="color:var(--brown);">mountainvistaad@gmail.com</a></div>
+            <div><strong>Water Co-op</strong>[placeholder@email.com]</div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">🏘️</div>
-            <div><strong>Community Committee</strong><a href="mailto:mvecommittee@gmail.com" style="color:var(--brown);">mvecommittee@gmail.com</a></div>
+            <div><strong>Community Committee</strong>[placeholder@email.com]</div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">📍</div>
@@ -966,6 +1117,7 @@
         <ul>
           <li><a href="#announcements">Announcements</a></li>
           <li><a href="#boards">Our Boards</a></li>
+          <li><a href="#survey">Survey Results</a></li>
           <li><a href="#meetings">Meetings</a></li>
           <li><a href="#financials">Financials</a></li>
           <li><a href="#minutes">Meeting Minutes</a></li>

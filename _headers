@@ -1,4 +1,7 @@
 /docs/*.pdf
   Content-Type: application/pdf
+  Content-Disposition: attachment
+
 /docs/*.docx
   Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  Content-Disposition: attachment
