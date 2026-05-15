@@ -268,14 +268,11 @@
       gap: 0.75rem;
       flex-wrap: wrap;
     }
-    .fireban-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
     .fireban-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
       flex-shrink: 0;
+      background: var(--sand);
       transition: background 0.4s;
     }
     .fireban-badge {
@@ -283,8 +280,8 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.2rem 0.65rem;
       border-radius: 99px;
+      background: var(--sand); color: var(--brown);
       white-space: nowrap;
-      transition: background 0.4s, color 0.4s;
     }
     .fireban-text {
       font-size: 0.85rem;
@@ -292,32 +289,24 @@
       flex: 1;
     }
     .fireban-text strong { font-weight: 700; }
-    .fireban-text .fireban-sub {
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
+    .fireban-sub { color: var(--muted); font-size: 0.78rem; }
     .fireban-link {
       font-size: 0.78rem; font-weight: 700;
-      color: var(--brown);
-      text-decoration: none;
-      white-space: nowrap;
-      flex-shrink: 0;
+      color: var(--brown); text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
       border: 1px solid var(--sand);
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
+      padding: 0.25rem 0.75rem; border-radius: 4px;
+      transition: background 0.2s;
     }
-    .fireban-link:hover { background: var(--sand); color: var(--dark); }
+    .fireban-link:hover { background: var(--sand); }
     .fireban-updated {
-      font-size: 0.72rem;
-      color: var(--muted);
-      white-space: nowrap;
-      flex-shrink: 0;
+      font-size: 0.72rem; color: var(--muted);
+      white-space: nowrap; flex-shrink: 0;
     }
     @media (max-width: 768px) {
       .fireban-strip { padding: 0 1.2rem; }
       .fireban-updated { display: none; }
-      .fireban-text .fireban-sub { display: none; }
+      .fireban-sub { display: none; }
     }
 
     /* ── Announcements ── */
@@ -613,12 +602,12 @@
   </div>
 
   <!-- FIRE BAN STRIP -->
-  <div class="fireban-strip" id="fireban-strip">
+  <div class="fireban-strip">
     <div class="fireban-inner">
       <div class="fireban-row">
-        <span class="fireban-icon">🔥</span>
+        <span style="font-size:1rem;flex-shrink:0;">🔥</span>
         <div class="fireban-dot" id="fb-dot"></div>
-        <span class="fireban-badge" id="fb-badge">Checking...</span>
+        <span class="fireban-badge" id="fb-badge">Checking…</span>
         <div class="fireban-text">
           <strong id="fb-title">Fire Ban Status</strong>
           <span class="fireban-sub" id="fb-sub"> — Cardston County, AB</span>
@@ -1220,32 +1209,30 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Fire Ban Strip
+    // Fire Ban Strip — calls via Netlify proxy to avoid CORS
     (function() {
       const STATUSES = {
-        none:        { dot: '#4a6741', badgeBg: '#d8f0d5', badgeColor: '#2a4f24', badge: 'No Restriction',  title: 'No fire restriction in effect', sub: ' — Cardston County, AB' },
-        advisory:    { dot: '#c9a97a', badgeBg: '#fdf0d8', badgeColor: '#7a5800', badge: 'Fire Advisory',   title: 'Fire advisory in effect',        sub: ' — campfires allowed, use caution' },
-        restriction: { dot: '#c0622a', badgeBg: '#fdecd8', badgeColor: '#7a2800', badge: 'Fire Restriction', title: 'Fire restriction in effect',      sub: ' — no campfires on public land' },
-        ban:         { dot: '#8b2020', badgeBg: '#f8d7da', badgeColor: '#5a0f0f', badge: 'Fire Ban',         title: 'Fire ban in effect',             sub: ' — all open fires prohibited' }
+        none:        { dot:'#4a6741', bg:'#d8f0d5', color:'#2a4f24', badge:'No Restriction',   title:'No fire restriction in effect',   sub:' — campfires permitted, follow safe fire guidelines' },
+        advisory:    { dot:'#c9a97a', bg:'#fdf0d8', color:'#7a5800', badge:'Fire Advisory',     title:'Fire advisory in effect',          sub:' — campfires still allowed, exercise caution' },
+        restriction: { dot:'#c0622a', bg:'#fdecd8', color:'#7a2800', badge:'Fire Restriction',  title:'Fire restriction in effect',       sub:' — no campfires on public land or backcountry' },
+        ban:         { dot:'#8b2020', bg:'#f8d7da', color:'#5a0f0f', badge:'Fire Ban',          title:'Fire ban in effect',               sub:' — all open fires prohibited, including backyard fire pits' }
       };
 
-      function applyStatus(key) {
+      function apply(key) {
         const s = STATUSES[key] || STATUSES.none;
         document.getElementById('fb-dot').style.background = s.dot;
         const badge = document.getElementById('fb-badge');
         badge.textContent = s.badge;
-        badge.style.background = s.badgeBg;
-        badge.style.color = s.badgeColor;
+        badge.style.background = s.bg;
+        badge.style.color = s.color;
         document.getElementById('fb-title').textContent = s.title;
         document.getElementById('fb-sub').textContent = s.sub;
         const now = new Date();
         document.getElementById('fb-updated').textContent =
-          'Updated ' + now.toLocaleTimeString('en-CA', { hour: '2-digit', minute: '2-digit' });
+          'Updated ' + now.toLocaleTimeString('en-CA', {hour:'2-digit', minute:'2-digit'});
       }
 
-      function parseBanLevel(features) {
-        // features is array from ArcGIS query; alert_type field values:
-        // "Fire Ban", "Fire Restriction", "Fire Advisory"
+      function parse(features) {
         if (!features || features.length === 0) return 'none';
         const types = features.map(f => (f.attributes.alert_type || '').toLowerCase());
         if (types.some(t => t.includes('ban'))) return 'ban';
@@ -1254,30 +1241,17 @@
         return 'none';
       }
 
-      // ArcGIS REST query — Fire Control Orders layer, filter by Cardston County
-      const API = 'https://maps.alberta.ca/genesis/rest/services/Fire_Control_Orders-Data/Latest/FeatureServer/0/query';
-      const params = new URLSearchParams({
-        where: "name LIKE '%Cardston%'",
-        outFields: 'name,alert_type,start_date,description',
-        f: 'json'
-      });
-
-      fetch(API + '?' + params)
+      // Uses Netlify proxy rule — avoids CORS block from browser
+      fetch('/api/firebans')
         .then(r => r.json())
-        .then(data => {
-          const level = parseBanLevel(data.features);
-          applyStatus(level);
-        })
+        .then(data => apply(parse(data.features)))
         .catch(() => {
-          // API unavailable — show fallback
           document.getElementById('fb-dot').style.background = '#9a8070';
-          const badge = document.getElementById('fb-badge');
-          badge.textContent = 'Status Unknown';
-          badge.style.background = '#e8d9c0';
-          badge.style.color = '#8b6340';
-          document.getElementById('fb-title').textContent = 'Could not load fire ban status';
-          document.getElementById('fb-sub').textContent = ' — check albertafirebans.ca for current conditions';
-          document.getElementById('fb-updated').textContent = '';
+          document.getElementById('fb-badge').textContent = 'Status Unknown';
+          document.getElementById('fb-badge').style.background = '#e8d9c0';
+          document.getElementById('fb-badge').style.color = '#8b6340';
+          document.getElementById('fb-title').textContent = 'Fire ban status unavailable';
+          document.getElementById('fb-sub').textContent = ' — visit albertafirebans.ca for current conditions';
         });
     })();
 

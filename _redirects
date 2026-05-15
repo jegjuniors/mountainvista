@@ -1,0 +1,1 @@
+/api/firebans  https://maps.alberta.ca/genesis/rest/services/Fire_Control_Orders-Data/Latest/FeatureServer/0/query?where=name+LIKE+%27%25Cardston%25%27&outFields=name,alert_type&f=json  200
