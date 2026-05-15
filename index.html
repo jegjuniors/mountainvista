@@ -251,6 +251,75 @@
     .section-header p { color: var(--muted); max-width: 520px; margin: 0.8rem auto 0; font-size: 0.97rem; }
     .divider { width: 48px; height: 3px; background: var(--tan); margin: 1rem auto 0; border-radius: 2px; }
 
+    /* ── Fire Ban Strip ── */
+    .fireban-strip {
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--sand);
+      padding: 0 2rem;
+    }
+    .fireban-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 0;
+    }
+    .fireban-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .fireban-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .fireban-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: background 0.4s;
+    }
+    .fireban-badge {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 99px;
+      white-space: nowrap;
+      transition: background 0.4s, color 0.4s;
+    }
+    .fireban-text {
+      font-size: 0.85rem;
+      color: var(--dark);
+      flex: 1;
+    }
+    .fireban-text strong { font-weight: 700; }
+    .fireban-text .fireban-sub {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .fireban-link {
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--brown);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border: 1px solid var(--sand);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .fireban-link:hover { background: var(--sand); color: var(--dark); }
+    .fireban-updated {
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .fireban-strip { padding: 0 1.2rem; }
+      .fireban-updated { display: none; }
+      .fireban-text .fireban-sub { display: none; }
+    }
+
     /* ── Announcements ── */
     #announcements { background: var(--warm-white); }
     .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
@@ -543,6 +612,23 @@
     <div class="stat-item reveal"><div class="stat-num">2025</div><div class="stat-label">Fiscal Year</div></div>
   </div>
 
+  <!-- FIRE BAN STRIP -->
+  <div class="fireban-strip" id="fireban-strip">
+    <div class="fireban-inner">
+      <div class="fireban-row">
+        <span class="fireban-icon">🔥</span>
+        <div class="fireban-dot" id="fb-dot"></div>
+        <span class="fireban-badge" id="fb-badge">Checking...</span>
+        <div class="fireban-text">
+          <strong id="fb-title">Fire Ban Status</strong>
+          <span class="fireban-sub" id="fb-sub"> — Cardston County, AB</span>
+        </div>
+        <span class="fireban-updated" id="fb-updated"></span>
+        <a class="fireban-link" href="https://www.albertafirebans.ca" target="_blank" rel="noopener">Full Map ↗</a>
+      </div>
+    </div>
+  </div>
+
   <!-- ANNOUNCEMENTS -->
   <section id="announcements">
     <div class="section-inner">
@@ -633,29 +719,8 @@
               </a>
             </li>
             <li class="member-row">
-              <div class="member-info"><span class="member-name">Dave May</span><span class="member-role">Treasurer</span></div>
-              <a class="member-email" href="mailto:billybob_61@yahoo.com" aria-label="Email Dave May">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
-            </li>
-            <li class="member-row">
-              <div class="member-info"><span class="member-name">Shane McMorrow</span><span class="member-role">Lead Operator</span></div>
-              <a class="member-email" href="mailto:shanemcmorrow@yahoo.ca" aria-label="Email Shane McMorrow">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
-            </li>
-            <li class="member-row">
               <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Executive Assistant</span></div>
               <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
-            </li>
-            <li class="member-row">
-              <div class="member-info"><span class="member-name">Sarah Greer</span><span class="member-role">Member</span></div>
-              <a class="member-email" href="mailto:greer.sarah@gmail.com" aria-label="Email Sarah Greer">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 Email
               </a>
@@ -1154,6 +1219,67 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Fire Ban Strip
+    (function() {
+      const STATUSES = {
+        none:        { dot: '#4a6741', badgeBg: '#d8f0d5', badgeColor: '#2a4f24', badge: 'No Restriction',  title: 'No fire restriction in effect', sub: ' — Cardston County, AB' },
+        advisory:    { dot: '#c9a97a', badgeBg: '#fdf0d8', badgeColor: '#7a5800', badge: 'Fire Advisory',   title: 'Fire advisory in effect',        sub: ' — campfires allowed, use caution' },
+        restriction: { dot: '#c0622a', badgeBg: '#fdecd8', badgeColor: '#7a2800', badge: 'Fire Restriction', title: 'Fire restriction in effect',      sub: ' — no campfires on public land' },
+        ban:         { dot: '#8b2020', badgeBg: '#f8d7da', badgeColor: '#5a0f0f', badge: 'Fire Ban',         title: 'Fire ban in effect',             sub: ' — all open fires prohibited' }
+      };
+
+      function applyStatus(key) {
+        const s = STATUSES[key] || STATUSES.none;
+        document.getElementById('fb-dot').style.background = s.dot;
+        const badge = document.getElementById('fb-badge');
+        badge.textContent = s.badge;
+        badge.style.background = s.badgeBg;
+        badge.style.color = s.badgeColor;
+        document.getElementById('fb-title').textContent = s.title;
+        document.getElementById('fb-sub').textContent = s.sub;
+        const now = new Date();
+        document.getElementById('fb-updated').textContent =
+          'Updated ' + now.toLocaleTimeString('en-CA', { hour: '2-digit', minute: '2-digit' });
+      }
+
+      function parseBanLevel(features) {
+        // features is array from ArcGIS query; alert_type field values:
+        // "Fire Ban", "Fire Restriction", "Fire Advisory"
+        if (!features || features.length === 0) return 'none';
+        const types = features.map(f => (f.attributes.alert_type || '').toLowerCase());
+        if (types.some(t => t.includes('ban'))) return 'ban';
+        if (types.some(t => t.includes('restriction'))) return 'restriction';
+        if (types.some(t => t.includes('advisory'))) return 'advisory';
+        return 'none';
+      }
+
+      // ArcGIS REST query — Fire Control Orders layer, filter by Cardston County
+      const API = 'https://maps.alberta.ca/genesis/rest/services/Fire_Control_Orders-Data/Latest/FeatureServer/0/query';
+      const params = new URLSearchParams({
+        where: "name LIKE '%Cardston%'",
+        outFields: 'name,alert_type,start_date,description',
+        f: 'json'
+      });
+
+      fetch(API + '?' + params)
+        .then(r => r.json())
+        .then(data => {
+          const level = parseBanLevel(data.features);
+          applyStatus(level);
+        })
+        .catch(() => {
+          // API unavailable — show fallback
+          document.getElementById('fb-dot').style.background = '#9a8070';
+          const badge = document.getElementById('fb-badge');
+          badge.textContent = 'Status Unknown';
+          badge.style.background = '#e8d9c0';
+          badge.style.color = '#8b6340';
+          document.getElementById('fb-title').textContent = 'Could not load fire ban status';
+          document.getElementById('fb-sub').textContent = ' — check albertafirebans.ca for current conditions';
+          document.getElementById('fb-updated').textContent = '';
+        });
+    })();
 
     // Contact form success
     document.getElementById('contactForm')?.addEventListener('submit', function() {
