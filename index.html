@@ -257,13 +257,12 @@
       border-bottom: 1px solid var(--sand);
       padding: 0 2rem;
     }
-    .fireban-inner { max-width: 1100px; margin: 0 auto; padding: 0.9rem 0; }
+    .fireban-inner { max-width: 1100px; margin: 0 auto; padding: 0.85rem 0; }
     .fireban-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-    .fireban-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: var(--sand); }
+    .fireban-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .fireban-badge {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.2rem 0.65rem; border-radius: 99px;
-      background: var(--sand); color: var(--brown); white-space: nowrap;
+      padding: 0.2rem 0.65rem; border-radius: 99px; white-space: nowrap;
     }
     .fireban-text { font-size: 0.85rem; color: var(--dark); flex: 1; }
     .fireban-text strong { font-weight: 700; }
@@ -274,10 +273,8 @@
       padding: 0.25rem 0.75rem; border-radius: 4px; transition: background 0.2s;
     }
     .fireban-link:hover { background: var(--sand); }
-    .fireban-updated { font-size: 0.72rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
     @media (max-width: 768px) {
       .fireban-strip { padding: 0 1.2rem; }
-      .fireban-updated { display: none; }
       .fireban-sub { display: none; }
     }
 
@@ -574,17 +571,20 @@
   </div>
 
   <!-- FIRE BAN STRIP -->
-  <div class="fireban-strip">
+  <!-- =========================================================== -->
+  <!-- TO UPDATE: change data-status below to one of:              -->
+  <!--   none | advisory | restriction | ban                       -->
+  <!-- =========================================================== -->
+  <div class="fireban-strip" id="fireban-strip" data-status="none">
     <div class="fireban-inner">
       <div class="fireban-row">
         <span style="font-size:1rem;flex-shrink:0;">🔥</span>
         <div class="fireban-dot" id="fb-dot"></div>
-        <span class="fireban-badge" id="fb-badge">Checking…</span>
+        <span class="fireban-badge" id="fb-badge"></span>
         <div class="fireban-text">
-          <strong id="fb-title">Fire Ban Status</strong>
-          <span class="fireban-sub" id="fb-sub"> — Cardston County, AB</span>
+          <strong id="fb-title"></strong>
+          <span class="fireban-sub" id="fb-sub"></span>
         </div>
-        <span class="fireban-updated" id="fb-updated"></span>
         <a class="fireban-link" href="https://www.albertafirebans.ca" target="_blank" rel="noopener">Full Map ↗</a>
       </div>
     </div>
@@ -1181,34 +1181,22 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Fire Ban Strip — calls Netlify serverless function (no CORS issue)
+    // Fire Ban Strip — reads data-status attribute on the strip div
     (function() {
       const STATUSES = {
-        none:        { dot:'#4a6741', bg:'#d8f0d5', color:'#2a4f24', badge:'No Restriction',  title:'No fire restriction in effect',  sub:' — campfires permitted, follow safe fire guidelines' },
-        advisory:    { dot:'#c9a97a', bg:'#fdf0d8', color:'#7a5800', badge:'Fire Advisory',    title:'Fire advisory in effect',         sub:' — campfires still allowed, exercise caution' },
-        restriction: { dot:'#c0622a', bg:'#fdecd8', color:'#7a2800', badge:'Fire Restriction', title:'Fire restriction in effect',      sub:' — no campfires on public land or backcountry' },
-        ban:         { dot:'#8b2020', bg:'#f8d7da', color:'#5a0f0f', badge:'Fire Ban',         title:'Fire ban in effect',              sub:' — all open fires prohibited including backyard fire pits' },
-        unknown:     { dot:'#9a8070', bg:'#e8d9c0', color:'#8b6340', badge:'Status Unknown',   title:'Fire ban status unavailable',     sub:' — visit albertafirebans.ca for current conditions' }
+        none:        { dot:'#4a6741', bg:'#d8f0d5', color:'#2a4f24', badge:'No Restriction',  title:'No fire restriction in effect',   sub:' — campfires permitted, follow safe fire guidelines' },
+        advisory:    { dot:'#c9a97a', bg:'#fdf0d8', color:'#7a5800', badge:'Fire Advisory',    title:'Fire advisory in effect',          sub:' — campfires still allowed, exercise caution' },
+        restriction: { dot:'#c0622a', bg:'#fdecd8', color:'#7a2800', badge:'Fire Restriction', title:'Fire restriction in effect',       sub:' — no campfires on public land or backcountry' },
+        ban:         { dot:'#8b2020', bg:'#f8d7da', color:'#5a0f0f', badge:'Fire Ban',         title:'Fire ban in effect',              sub:' — all open fires prohibited including backyard fire pits' }
       };
-
-      function apply(key) {
-        const s = STATUSES[key] || STATUSES.unknown;
-        document.getElementById('fb-dot').style.background = s.dot;
-        const badge = document.getElementById('fb-badge');
-        badge.textContent = s.badge;
-        badge.style.background = s.bg;
-        badge.style.color = s.color;
-        document.getElementById('fb-title').textContent = s.title;
-        document.getElementById('fb-sub').textContent = s.sub;
-        const now = new Date();
-        document.getElementById('fb-updated').textContent =
-          'Updated ' + now.toLocaleTimeString('en-CA', { hour:'2-digit', minute:'2-digit' });
-      }
-
-      fetch('/api/fireban')
-        .then(r => r.json())
-        .then(data => apply(data.level || 'unknown'))
-        .catch(() => apply('unknown'));
+      const strip = document.getElementById('fireban-strip');
+      const key = (strip.dataset.status || 'none').toLowerCase();
+      const s = STATUSES[key] || STATUSES.none;
+      document.getElementById('fb-dot').style.background = s.dot;
+      const badge = document.getElementById('fb-badge');
+      badge.textContent = s.badge; badge.style.background = s.bg; badge.style.color = s.color;
+      document.getElementById('fb-title').textContent = s.title;
+      document.getElementById('fb-sub').textContent = s.sub;
     })();
 
     // Contact form success
