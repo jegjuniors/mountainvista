@@ -257,52 +257,24 @@
       border-bottom: 1px solid var(--sand);
       padding: 0 2rem;
     }
-    .fireban-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.9rem 0;
-    }
-    .fireban-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .fireban-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      background: var(--sand);
-      transition: background 0.4s;
-    }
+    .fireban-inner { max-width: 1100px; margin: 0 auto; padding: 0.9rem 0; }
+    .fireban-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .fireban-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: var(--sand); }
     .fireban-badge {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.2rem 0.65rem;
-      border-radius: 99px;
-      background: var(--sand); color: var(--brown);
-      white-space: nowrap;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.65rem; border-radius: 99px;
+      background: var(--sand); color: var(--brown); white-space: nowrap;
     }
-    .fireban-text {
-      font-size: 0.85rem;
-      color: var(--dark);
-      flex: 1;
-    }
+    .fireban-text { font-size: 0.85rem; color: var(--dark); flex: 1; }
     .fireban-text strong { font-weight: 700; }
     .fireban-sub { color: var(--muted); font-size: 0.78rem; }
     .fireban-link {
-      font-size: 0.78rem; font-weight: 700;
-      color: var(--brown); text-decoration: none;
-      white-space: nowrap; flex-shrink: 0;
-      border: 1px solid var(--sand);
-      padding: 0.25rem 0.75rem; border-radius: 4px;
-      transition: background 0.2s;
+      font-size: 0.78rem; font-weight: 700; color: var(--brown); text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; border: 1px solid var(--sand);
+      padding: 0.25rem 0.75rem; border-radius: 4px; transition: background 0.2s;
     }
     .fireban-link:hover { background: var(--sand); }
-    .fireban-updated {
-      font-size: 0.72rem; color: var(--muted);
-      white-space: nowrap; flex-shrink: 0;
-    }
+    .fireban-updated { font-size: 0.72rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
     @media (max-width: 768px) {
       .fireban-strip { padding: 0 1.2rem; }
       .fireban-updated { display: none; }
@@ -1209,17 +1181,18 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Fire Ban Strip — calls via Netlify proxy to avoid CORS
+    // Fire Ban Strip — calls Netlify serverless function (no CORS issue)
     (function() {
       const STATUSES = {
-        none:        { dot:'#4a6741', bg:'#d8f0d5', color:'#2a4f24', badge:'No Restriction',   title:'No fire restriction in effect',   sub:' — campfires permitted, follow safe fire guidelines' },
-        advisory:    { dot:'#c9a97a', bg:'#fdf0d8', color:'#7a5800', badge:'Fire Advisory',     title:'Fire advisory in effect',          sub:' — campfires still allowed, exercise caution' },
-        restriction: { dot:'#c0622a', bg:'#fdecd8', color:'#7a2800', badge:'Fire Restriction',  title:'Fire restriction in effect',       sub:' — no campfires on public land or backcountry' },
-        ban:         { dot:'#8b2020', bg:'#f8d7da', color:'#5a0f0f', badge:'Fire Ban',          title:'Fire ban in effect',               sub:' — all open fires prohibited, including backyard fire pits' }
+        none:        { dot:'#4a6741', bg:'#d8f0d5', color:'#2a4f24', badge:'No Restriction',  title:'No fire restriction in effect',  sub:' — campfires permitted, follow safe fire guidelines' },
+        advisory:    { dot:'#c9a97a', bg:'#fdf0d8', color:'#7a5800', badge:'Fire Advisory',    title:'Fire advisory in effect',         sub:' — campfires still allowed, exercise caution' },
+        restriction: { dot:'#c0622a', bg:'#fdecd8', color:'#7a2800', badge:'Fire Restriction', title:'Fire restriction in effect',      sub:' — no campfires on public land or backcountry' },
+        ban:         { dot:'#8b2020', bg:'#f8d7da', color:'#5a0f0f', badge:'Fire Ban',         title:'Fire ban in effect',              sub:' — all open fires prohibited including backyard fire pits' },
+        unknown:     { dot:'#9a8070', bg:'#e8d9c0', color:'#8b6340', badge:'Status Unknown',   title:'Fire ban status unavailable',     sub:' — visit albertafirebans.ca for current conditions' }
       };
 
       function apply(key) {
-        const s = STATUSES[key] || STATUSES.none;
+        const s = STATUSES[key] || STATUSES.unknown;
         document.getElementById('fb-dot').style.background = s.dot;
         const badge = document.getElementById('fb-badge');
         badge.textContent = s.badge;
@@ -1229,30 +1202,13 @@
         document.getElementById('fb-sub').textContent = s.sub;
         const now = new Date();
         document.getElementById('fb-updated').textContent =
-          'Updated ' + now.toLocaleTimeString('en-CA', {hour:'2-digit', minute:'2-digit'});
+          'Updated ' + now.toLocaleTimeString('en-CA', { hour:'2-digit', minute:'2-digit' });
       }
 
-      function parse(features) {
-        if (!features || features.length === 0) return 'none';
-        const types = features.map(f => (f.attributes.alert_type || '').toLowerCase());
-        if (types.some(t => t.includes('ban'))) return 'ban';
-        if (types.some(t => t.includes('restriction'))) return 'restriction';
-        if (types.some(t => t.includes('advisory'))) return 'advisory';
-        return 'none';
-      }
-
-      // Uses Netlify proxy rule — avoids CORS block from browser
-      fetch('/api/firebans')
+      fetch('/api/fireban')
         .then(r => r.json())
-        .then(data => apply(parse(data.features)))
-        .catch(() => {
-          document.getElementById('fb-dot').style.background = '#9a8070';
-          document.getElementById('fb-badge').textContent = 'Status Unknown';
-          document.getElementById('fb-badge').style.background = '#e8d9c0';
-          document.getElementById('fb-badge').style.color = '#8b6340';
-          document.getElementById('fb-title').textContent = 'Fire ban status unavailable';
-          document.getElementById('fb-sub').textContent = ' — visit albertafirebans.ca for current conditions';
-        });
+        .then(data => apply(data.level || 'unknown'))
+        .catch(() => apply('unknown'));
     })();
 
     // Contact form success
