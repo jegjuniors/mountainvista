@@ -280,7 +280,7 @@
 
     /* ── Survey Strip ── */
     .survey-strip {
-      background: linear-gradient(90deg, #2f4a2c 0%, #4a6741 60%, #5a7d51 100%);
+      background: linear-gradient(90deg, #8b3a1a 0%, #c0622a 60%, #d4733a 100%);
       border-bottom: 1px solid rgba(0,0,0,0.15);
       padding: 0 2rem;
     }
@@ -290,19 +290,19 @@
     .survey-strip-badge {
       font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 0.2rem 0.65rem; border-radius: 99px; white-space: nowrap;
-      background: rgba(255,255,255,0.2); color: #fff; flex-shrink: 0;
+      background: rgba(255,255,255,0.25); color: #fff; flex-shrink: 0;
     }
     .survey-strip-text { flex: 1; color: #fff; font-size: 0.88rem; }
     .survey-strip-text strong { font-weight: 700; }
-    .survey-strip-deadline { color: rgba(255,255,255,0.75); font-size: 0.8rem; }
+    .survey-strip-deadline { color: rgba(255,255,255,0.85); font-size: 0.8rem; }
     .survey-strip-btn {
       display: inline-flex; align-items: center; gap: 0.4rem;
       font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--pine); background: #fff;
+      color: var(--accent); background: #fff;
       padding: 0.45rem 1.1rem; border-radius: 99px;
       text-decoration: none; white-space: nowrap; flex-shrink: 0;
       transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .survey-strip-btn:hover { background: var(--sand); transform: translateY(-1px); }
     @media (max-width: 768px) {
@@ -661,14 +661,14 @@
       <div class="announcements-grid">
 
         <!-- CARD 1: Follow-up Survey — pinned first -->
-        <div class="announcement-card reveal" style="border-left-color: var(--pine); border-left-width: 5px; border-top: 3px solid var(--pine-light); background: linear-gradient(135deg, #fff 70%, #d8f0d5 100%); box-shadow: 0 4px 20px rgba(74,103,65,0.2);">
-          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📋 Survey — Action Required</div>
+        <div class="announcement-card reveal" style="border-left-color: var(--accent); border-left-width: 5px; border-top: 3px solid var(--accent); background: linear-gradient(135deg, #fff 70%, #fdecd8 100%); box-shadow: 0 4px 20px rgba(192,98,42,0.2);">
+          <div class="ann-tag" style="background:#fdecd8; color:var(--accent);">📋 Survey — Action Required</div>
           <h3>Community Committee Follow-up Survey — Have Your Say!</h3>
           <p>The Community Committee has launched a short follow-up survey based on the April 2026 results. All residents are encouraged to respond. <strong style="color:var(--accent);">Deadline: May 29, 2026 @ 5pm.</strong></p>
           <div style="margin-top:1rem;">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXsDGqBQpFis2L3WZMzun8cW_H9XiAdGD9BKqsmXx0PPpAWw/viewform" target="_blank" rel="noopener"
-               style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:var(--pine);padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
-               onmouseover="this.style.background='var(--pine-light)'" onmouseout="this.style.background='var(--pine)'">
+               style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:var(--accent);padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
+               onmouseover="this.style.background='#a8521f'" onmouseout="this.style.background='var(--accent)'">
               📋 Take the Survey ↗
             </a>
           </div>
