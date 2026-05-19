@@ -1,5 +1,5 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 18, 2026 · Follow-up survey strip + card 1 added; contact section redesigned; new emails; footer domain updated_
+_Last updated: May 18, 2026 · Follow-up survey strip + card 1 added in orange/accent colour; contact section redesigned; new emails; footer domain updated_
 
 ---
 
@@ -58,7 +58,7 @@ mountainvista/                          ← GitHub repo root
 | Sign Strip | .sign-strip | ✅ Complete | Mobile only |
 | Stats Strip | .stats-strip | ✅ Complete | 42 lots, 2 boards, 1 co-op, 2026 fiscal year |
 | Fire Ban Strip | #fireban-strip | ✅ Manual | Slim bar above Survey Strip — change data-status to update |
-| Survey Strip | .survey-strip | ⏳ Temporary | Dark green bar — remove after May 29, 2026 @ 5pm when survey closes |
+| Survey Strip | .survey-strip | ⏳ Temporary | Orange/accent gradient bar — remove after May 29, 2026 @ 5pm when survey closes |
 | Announcements | #announcements | ✅ Real data | 7 cards — cards 1, 2 & 3 highlighted; survey strip above |
 | Boards | #boards | ✅ Real data | Water Co-op: 3 members; Committee: 6 members |
 | Survey Results | #survey | ✅ Real data | 2026 survey (37 responses) |
