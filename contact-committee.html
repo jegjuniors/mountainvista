@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact the Community Committee — Mountain Vista Estates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream:      #faf6ef;
+      --warm-white: #fff9f2;
+      --sand:       #e8d9c0;
+      --tan:        #c9a97a;
+      --brown:      #8b6340;
+      --dark:       #3a2a1a;
+      --pine:       #4a6741;
+      --pine-light: #6a9165;
+      --accent:     #c0622a;
+      --muted:      #9a8070;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Lato', sans-serif;
+      --shadow-card: 0 2px 12px rgba(58,42,26,0.10);
+      --shadow-soft: 0 4px 24px rgba(58,42,26,0.08);
+      --radius:    4px;
+      --radius-lg: 10px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,246,239,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--brown); letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--pine); }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--pine);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--pine-light); }
+
+    /* ── Page header ── */
+    .page-header {
+      background: linear-gradient(135deg, #2f4a2c 0%, #4a6741 50%, #6a9165 100%);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: #fff;
+    }
+    .page-header-eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; opacity: 0.75; margin-bottom: 0.7rem;
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+    .page-header p {
+      font-size: 0.97rem; opacity: 0.85;
+      max-width: 500px; margin: 0 auto;
+    }
+
+    /* ── Main layout ── */
+    .page-body { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+    .page-layout { display: grid; grid-template-columns: 1fr 1.8fr; gap: 3rem; align-items: start; }
+
+    /* ── Sidebar ── */
+    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-card {
+      background: #fff; border-radius: var(--radius-lg);
+      padding: 1.6rem; box-shadow: var(--shadow-card);
+      border-top: 3px solid var(--pine);
+    }
+    .info-card h3 {
+      font-family: var(--font-display); font-size: 1.05rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 1rem;
+    }
+    .info-item { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.85rem; font-size: 0.88rem; }
+    .info-item:last-child { margin-bottom: 0; }
+    .info-item-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .info-item strong { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.1rem; }
+    .info-item a { color: var(--pine); text-decoration: none; }
+    .info-item a:hover { text-decoration: underline; }
+
+    /* ── Form card ── */
+    .form-card {
+      background: #fff; border-radius: var(--radius-lg);
+      padding: 2.4rem; box-shadow: var(--shadow-card);
+    }
+    .form-card h2 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 0.4rem;
+    }
+    .form-card > p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.8rem; }
+
+    .form-group { margin-bottom: 1.3rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label {
+      display: block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.4rem;
+    }
+    input, select, textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid var(--sand); border-radius: var(--radius);
+      font-family: var(--font-body); font-size: 0.92rem; color: var(--dark);
+      background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--pine); box-shadow: 0 0 0 3px rgba(74,103,65,0.12); background: #fff;
+    }
+    textarea { resize: vertical; min-height: 130px; }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b6340' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center;
+    }
+
+    .btn-submit {
+      width: 100%; padding: 1rem; font-size: 0.95rem;
+      font-family: var(--font-body); font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--pine); color: #fff;
+      border: none; border-radius: 99px; cursor: pointer;
+      box-shadow: 0 4px 18px rgba(74,103,65,0.4);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-submit:hover { background: var(--pine-light); transform: translateY(-2px); }
+
+    .form-success {
+      display: none; text-align: center; padding: 2.5rem 1rem;
+      color: var(--pine);
+    }
+    .form-success .success-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .form-success h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .form-success p { font-size: 0.9rem; color: var(--muted); }
+    .form-success a { color: var(--pine); font-weight: 700; text-decoration: none; }
+
+    /* ── Footer ── */
+    .page-footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 1.5rem 2rem;
+      font-size: 0.82rem;
+    }
+    .page-footer a { color: var(--tan); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .page-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      nav { padding: 0 1.2rem; }
+      .page-header { padding: 2.5rem 1.5rem; }
+      .page-body { padding: 2rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Mountain <span>Vista</span> Estates</a>
+    <a href="index.html#contact" class="nav-back">← Back to Contact</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-eyebrow">Mountain Vista Estates · Community Committee</div>
+    <h1>🏘️ Contact the Community Committee</h1>
+    <p>Questions about events, common areas, the pond, garbage, beautification &amp; community life</p>
+  </div>
+
+  <div class="page-body">
+    <div class="page-layout">
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="info-card">
+          <h3>Community Committee</h3>
+          <div class="info-item">
+            <div class="info-item-icon">📧</div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:mvecommittee@mountainvistaestates.ca">mvecommittee@mountainvistaestates.ca</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">👥</div>
+            <div>
+              <strong>Members</strong>
+              Gina Rebere · Kylee Gairns · Daniel Saretsky · Dave May · Debra Glaister · Caroline Allain
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">📍</div>
+            <div>
+              <strong>Location</strong>
+              Mountain Vista Estates<br />Cardston County, AB T0K 1W0
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>What we handle</h3>
+          <div class="info-item"><div class="info-item-icon">🎉</div><div>Community events &amp; activities</div></div>
+          <div class="info-item"><div class="info-item-icon">🌊</div><div>Pond &amp; fountain maintenance</div></div>
+          <div class="info-item"><div class="info-item-icon">🗑️</div><div>Garbage &amp; waste management</div></div>
+          <div class="info-item"><div class="info-item-icon">🌿</div><div>Common areas &amp; beautification</div></div>
+          <div class="info-item"><div class="info-item-icon">🌾</div><div>Weed spraying &amp; grounds</div></div>
+          <div class="info-item"><div class="info-item-icon">💬</div><div>General community questions</div></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="form-card">
+        <h2>Send a Message</h2>
+        <p>Fill out the form below and the Community Committee will respond as soon as possible.</p>
+
+        <form name="contact-committee" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="committeeForm">
+          <input type="hidden" name="form-name" value="contact-committee" />
+          <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Lot / Street Address (optional)</label>
+            <input type="text" id="address" name="address" placeholder="e.g. 12 Mountain Vista Dr" />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>— Select a category —</option>
+              <option value="Events">🎉 Community events &amp; activities</option>
+              <option value="Pond">🌊 Pond &amp; fountain</option>
+              <option value="Garbage">🗑️ Garbage &amp; waste</option>
+              <option value="Common Areas">🌿 Common areas &amp; beautification</option>
+              <option value="Weed Spraying">🌾 Weed spraying &amp; grounds</option>
+              <option value="General Question">❓ General question</option>
+              <option value="Other">📝 Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g. August Long Weekend event idea" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Describe your question, idea, or concern in as much detail as possible..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Send to Community Committee →</button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✅</div>
+          <h3>Message Sent!</h3>
+          <p>Thank you — the Community Committee will be in touch as soon as possible.<br /><br />
+          <a href="index.html">← Return to Mountain Vista Estates</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <a href="index.html">Mountain Vista Estates</a> · Cardston County, Alberta · www.mountainvistaestates.ca
+  </div>
+
+  <script>
+    document.getElementById('committeeForm')?.addEventListener('submit', function() {
+      const form = this;
+      const success = document.getElementById('formSuccess');
+      setTimeout(() => { form.style.display = 'none'; success.style.display = 'block'; }, 800);
+    });
+  </script>
+
+</body>
+</html>

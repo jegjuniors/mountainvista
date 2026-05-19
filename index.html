@@ -278,6 +278,38 @@
       .fireban-sub { display: none; }
     }
 
+    /* ── Survey Strip ── */
+    .survey-strip {
+      background: linear-gradient(90deg, #2f4a2c 0%, #4a6741 60%, #5a7d51 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.15);
+      padding: 0 2rem;
+    }
+    .survey-strip-inner { max-width: 1100px; margin: 0 auto; padding: 0.9rem 0; }
+    .survey-strip-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .survey-strip-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .survey-strip-badge {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.2rem 0.65rem; border-radius: 99px; white-space: nowrap;
+      background: rgba(255,255,255,0.2); color: #fff; flex-shrink: 0;
+    }
+    .survey-strip-text { flex: 1; color: #fff; font-size: 0.88rem; }
+    .survey-strip-text strong { font-weight: 700; }
+    .survey-strip-deadline { color: rgba(255,255,255,0.75); font-size: 0.8rem; }
+    .survey-strip-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--pine); background: #fff;
+      padding: 0.45rem 1.1rem; border-radius: 99px;
+      text-decoration: none; white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .survey-strip-btn:hover { background: var(--sand); transform: translateY(-1px); }
+    @media (max-width: 768px) {
+      .survey-strip { padding: 0 1.2rem; }
+      .survey-strip-deadline { display: none; }
+    }
+
     /* ── Announcements ── */
     #announcements { background: var(--warm-white); }
     .announcements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
@@ -368,27 +400,34 @@
 
     /* ── Contact ── */
     #contact { background: var(--cream); }
-    .contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
     .contact-info h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }
     .contact-info p { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.5rem; }
     .contact-detail { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1rem; font-size: 0.9rem; }
     .contact-detail-icon { font-size: 1.1rem; margin-top: 0.1rem; }
     .contact-detail strong { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
-    .contact-form { background: #fff; border-radius: var(--radius-lg); padding: 2.4rem; box-shadow: var(--shadow-card); }
-    .form-group { margin-bottom: 1.4rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
-    input, select, textarea {
-      width: 100%; padding: 0.75rem 1rem;
-      border: 1.5px solid var(--sand); border-radius: var(--radius);
-      font-family: var(--font-body); font-size: 0.92rem; color: var(--dark);
-      background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+
+    /* Choice cards */
+    .contact-choices { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
+    .contact-choice-card {
+      display: flex; align-items: center; gap: 1.4rem;
+      background: #fff; border-radius: var(--radius-lg);
+      padding: 2rem 2rem; box-shadow: var(--shadow-card);
+      text-decoration: none; color: var(--dark);
+      border-left: 5px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    input:focus, select:focus, textarea:focus { border-color: var(--brown); box-shadow: 0 0 0 3px rgba(139,99,64,0.12); background: #fff; }
-    textarea { resize: vertical; min-height: 130px; }
-    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b6340' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
-    .form-submit { width: 100%; padding: 1rem; font-size: 0.95rem; }
-    .form-success { display: none; text-align: center; padding: 2rem; color: var(--pine); font-family: var(--font-display); font-size: 1.2rem; }
+    .contact-choice-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+    .contact-choice-water { border-left-color: var(--pine); }
+    .contact-choice-water:hover { border-left-color: var(--pine); }
+    .contact-choice-committee { border-left-color: var(--tan); }
+    .contact-choice-committee:hover { border-left-color: var(--brown); }
+    .choice-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .choice-body { flex: 1; }
+    .choice-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 0.3rem; }
+    .choice-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
+    .choice-arrow { font-size: 1.4rem; color: var(--tan); flex-shrink: 0; transition: transform 0.2s; }
+    .contact-choice-card:hover .choice-arrow { transform: translateX(4px); color: var(--brown); }
 
     /* ── Footer ── */
     footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 3.5rem 2rem 2rem; }
@@ -590,6 +629,26 @@
     </div>
   </div>
 
+  <!-- SURVEY STRIP -->
+  <!-- =========================================================== -->
+  <!-- REMOVE this strip after May 29, 2026 @ 5pm (survey closes) -->
+  <!-- =========================================================== -->
+  <div class="survey-strip">
+    <div class="survey-strip-inner">
+      <div class="survey-strip-row">
+        <span class="survey-strip-icon">📋</span>
+        <span class="survey-strip-badge">New Survey</span>
+        <div class="survey-strip-text">
+          <strong>Community Committee Follow-up Survey</strong>
+          <span class="survey-strip-deadline"> — Responses due May 29, 2026 @ 5pm</span>
+        </div>
+        <a class="survey-strip-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfXsDGqBQpFis2L3WZMzun8cW_H9XiAdGD9BKqsmXx0PPpAWw/viewform" target="_blank" rel="noopener">
+          Take the Survey ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- ANNOUNCEMENTS -->
   <section id="announcements">
     <div class="section-inner">
@@ -601,10 +660,24 @@
       </div>
       <div class="announcements-grid">
 
-        <!-- NEW: Survey Results card — pinned first -->
+        <!-- CARD 1: Follow-up Survey — pinned first -->
+        <div class="announcement-card reveal" style="border-left-color: var(--pine); border-left-width: 5px; border-top: 3px solid var(--pine-light); background: linear-gradient(135deg, #fff 70%, #d8f0d5 100%); box-shadow: 0 4px 20px rgba(74,103,65,0.2);">
+          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📋 Survey — Action Required</div>
+          <h3>Community Committee Follow-up Survey — Have Your Say!</h3>
+          <p>The Community Committee has launched a short follow-up survey based on the April 2026 results. All residents are encouraged to respond. <strong style="color:var(--accent);">Deadline: May 29, 2026 @ 5pm.</strong></p>
+          <div style="margin-top:1rem;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXsDGqBQpFis2L3WZMzun8cW_H9XiAdGD9BKqsmXx0PPpAWw/viewform" target="_blank" rel="noopener"
+               style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:var(--pine);padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
+               onmouseover="this.style.background='var(--pine-light)'" onmouseout="this.style.background='var(--pine)'">
+              📋 Take the Survey ↗
+            </a>
+          </div>
+          <div class="ann-date">📅 Posted: May 15, 2026 — Community Committee</div>
+        </div>
+
+        <!-- CARD 2: Survey Results (was card 1) -->
         <div class="announcement-card reveal" style="border-left-color: var(--pine); border-left-width: 5px; border-top: 3px solid var(--pine); background: linear-gradient(135deg, #fff 75%, #e8f4e6 100%); box-shadow: 0 4px 20px rgba(74,103,65,0.18);">
-          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📊 Survey Results</div>
-          <h3>2026 Community Survey — Results Are In!</h3>
+          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📊 Survey Results</div>          <h3>2026 Community Survey — Results Are In!</h3>
           <p>37 residents responded to the April 2026 Community Committee survey. Results are in on the pond, shed, weed spraying, events, dog park, and more. <a href="#survey" style="color:var(--pine);font-weight:700;">View the full results summary ↓</a></p>
           <div style="margin-top:1rem;">
             <a href="docs/MountainVista_Community_Survey_2026.pdf" download
@@ -1101,21 +1174,21 @@
     <div class="section-inner">
       <div class="section-header reveal">
         <div class="section-eyebrow">Get in Touch</div>
-        <h2>Contact a Board</h2>
+        <h2>Contact the Board or Committee</h2>
         <div class="divider"></div>
-        <p>Send a message, question, or request directly to the appropriate board.</p>
+        <p>Choose who you'd like to reach — each board has its own dedicated contact form.</p>
       </div>
       <div class="contact-layout">
         <div class="contact-info reveal">
           <h3>We're here to help.</h3>
-          <p>Use the form to reach the Water Co-op or Community Committee. All messages are reviewed by the respective board and you'll receive a response as soon as possible.</p>
+          <p>Select the appropriate board below to open a contact form, or send a direct email if you prefer.</p>
           <div class="contact-detail">
             <div class="contact-detail-icon">💧</div>
-            <div><strong>Water Co-op</strong><a href="mailto:mountainvistaad@gmail.com" style="color:var(--brown);">mountainvistaad@gmail.com</a></div>
+            <div><strong>Water Co-op</strong><a href="mailto:watercoop@mountainvistaestates.ca" style="color:var(--brown);">watercoop@mountainvistaestates.ca</a></div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">🏘️</div>
-            <div><strong>Community Committee</strong><a href="mailto:mvecommittee@gmail.com" style="color:var(--brown);">mvecommittee@gmail.com</a></div>
+            <div><strong>Community Committee</strong><a href="mailto:mvecommittee@mountainvistaestates.ca" style="color:var(--brown);">mvecommittee@mountainvistaestates.ca</a></div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">📍</div>
@@ -1126,33 +1199,23 @@
             <div><strong>Water Emergency?</strong>For urgent water issues (loss of service, contamination concerns), contact the Water Co-op emergency line: <strong>[Phone Number]</strong></div>
           </div>
         </div>
-        <div class="contact-form reveal">
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
-            <input type="hidden" name="form-name" value="contact" />
-            <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
-            <div class="form-row">
-              <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" placeholder="Jane" required /></div>
-              <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" placeholder="Smith" required /></div>
+        <div class="contact-choices reveal">
+          <a href="contact-watercoop.html" class="contact-choice-card contact-choice-water">
+            <div class="choice-icon">💧</div>
+            <div class="choice-body">
+              <div class="choice-title">Water Co-op</div>
+              <div class="choice-desc">Water service, infrastructure, irrigation, snow removal, membership &amp; billing questions</div>
             </div>
-            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@email.com" required /></div>
-            <div class="form-group"><label for="address">Lot / Street Address (optional)</label><input type="text" id="address" name="address" placeholder="e.g. 12 Mountain Vista Dr" /></div>
-            <div class="form-group">
-              <label for="recipient">Send Message To</label>
-              <select id="recipient" name="recipient" required>
-                <option value="" disabled selected>— Select a board —</option>
-                <option value="Water Co-op">💧 Water Co-op</option>
-                <option value="Community Committee">🏘️ Community Committee</option>
-                <option value="Both Boards">📋 Both Boards</option>
-              </select>
+            <div class="choice-arrow">→</div>
+          </a>
+          <a href="contact-committee.html" class="contact-choice-card contact-choice-committee">
+            <div class="choice-icon">🏘️</div>
+            <div class="choice-body">
+              <div class="choice-title">Community Committee</div>
+              <div class="choice-desc">Events, common areas, pond, garbage, beautification &amp; general community questions</div>
             </div>
-            <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" placeholder="e.g. Water pressure issue / Event idea / AGM question" required /></div>
-            <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Describe your question or request in as much detail as possible..." required></textarea></div>
-            <button type="submit" class="btn btn-primary form-submit">Send Message →</button>
-          </form>
-          <div class="form-success" id="formSuccess">
-            ✅ Thank you! Your message has been sent.<br />
-            <span style="font-family:var(--font-body);font-size:0.9rem;color:var(--muted)">The board will be in touch as soon as possible.</span>
-          </div>
+            <div class="choice-arrow">→</div>
+          </a>
         </div>
       </div>
     </div>
@@ -1189,7 +1252,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2025 Mountain Vista Estates Community. All rights reserved.</span>
-      <span>mountainvista.yourdomain.ca</span>
+      <span>www.mountainvistaestates.ca</span>
     </div>
   </footer>
 
@@ -1226,12 +1289,7 @@
       document.getElementById('fb-sub').textContent = s.sub;
     })();
 
-    // Contact form success
-    document.getElementById('contactForm')?.addEventListener('submit', function() {
-      const form = this;
-      const success = document.getElementById('formSuccess');
-      setTimeout(() => { form.style.display = 'none'; success.style.display = 'block'; }, 800);
-    });
+    // Contact form success handler removed — forms now on dedicated pages
   </script>
 
 </body>
