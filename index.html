@@ -532,6 +532,42 @@
         letter-spacing: 0.06em;
       }
 
+      /* Minutes table → card layout on mobile */
+      .minutes-table-wrap { overflow-x: unset; }
+      .minutes-table-wrap table { display: block; }
+      .minutes-table-wrap thead { display: none; }
+      .minutes-table-wrap tbody { display: block; }
+      .minutes-table-wrap tr {
+        display: block;
+        background: #fff;
+        border: 1px solid var(--sand);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        padding: 0.2rem 0;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      }
+      .minutes-table-wrap td {
+        display: flex;
+        gap: 0.6rem;
+        padding: 0.6rem 1rem;
+        border-bottom: 1px solid rgba(232,217,192,0.5);
+        font-size: 0.85rem;
+        align-items: flex-start;
+      }
+      .minutes-table-wrap td:last-child { border-bottom: none; }
+      .minutes-table-wrap td::before {
+        content: attr(data-label);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        min-width: 80px;
+        padding-top: 0.15rem;
+        flex-shrink: 0;
+      }
+
       /* Rest of layout */
       .boards-grid, .financials-layout, .contact-layout, .footer-inner { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
@@ -762,28 +798,16 @@
           <ul class="member-list">
             <li class="member-row">
               <div class="member-info"><span class="member-name">Keith Wagner</span><span class="member-role">President</span></div>
-              <a class="member-email" href="mailto:catapultdesigns@shaw.ca" aria-label="Email Keith Wagner">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Executive Assistant</span></div>
-              <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Member</span></div>
-              <a class="member-email" href="mailto:kylee.gairns666@gmail.com" aria-label="Email Kylee Gairns">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
           </ul>
           <div class="board-footer">
-            <a href="mailto:mountainvistaad@gmail.com" class="btn-board">
+            <a href="mailto:watercoop@mountainvistaestates.ca" class="btn-board">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               Email the Water Co-op
             </a>
@@ -800,49 +824,25 @@
           <ul class="member-list">
             <li class="member-row">
               <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:ginarebere@gmail.com" aria-label="Email Gina Rebere">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:kylee.gairns666@gmail.com" aria-label="Email Kylee Gairns">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Daniel Saretsky</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:dsaretsky@hotmail.com" aria-label="Email Daniel Saretsky">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Dave May</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:billybob_61@yahoo.com" aria-label="Email Dave May">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Debra Glaister</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:debra.glaister@gmail.com" aria-label="Email Debra Glaister">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Caroline Allain</span><span class="member-role">Committee Member</span></div>
-              <a class="member-email" href="mailto:mcallain@hotmail.com" aria-label="Email Caroline Allain">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Email
-              </a>
             </li>
           </ul>
           <div class="board-footer">
-            <a href="mailto:mvecommittee@gmail.com" class="btn-board btn-committee">
+            <a href="mailto:mvecommittee@mountainvistaestates.ca" class="btn-board btn-committee">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               Email the Committee
             </a>
@@ -1126,39 +1126,39 @@
           </thead>
           <tbody>
             <tr>
-              <td>April 18, 2026</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM</td>
-              <td>Budget approved $574/lot · 2025 net income $527 · Reserve fund $39,362 · Board reduced to 3 members · Dave May, Shane McMorrow &amp; Sarah Greer removed · Keith Wagner, Gina Rebere &amp; Kylee Gairns confirmed</td>
-              <td><a href="docs/2026_AGM_Report.pdf" download>Download ↓</a></td>
+              <td data-label="Date">April 18, 2026</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">AGM</td>
+              <td data-label="Key Topics">Budget approved $574/lot · 2025 net income $527 · Reserve fund $39,362 · Board reduced to 3 members · Dave May, Shane McMorrow &amp; Sarah Greer removed · Keith Wagner, Gina Rebere &amp; Kylee Gairns confirmed</td>
+              <td data-label="Document"><a href="docs/2026_AGM_Report.pdf" download>Download ↓</a></td>
             </tr>
             <tr>
-              <td>April 12, 2025</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM</td>
-              <td>Budget approved $580/lot · Cistern cleaning · Generator install · Sarah Greer auditor · Kerri Kryger resigned · Sarah Greer &amp; Kylee Gairns joined board</td>
-              <td><a href="docs/Annual_General_Meeting_12APR2025.pdf" download>Download ↓</a></td>
+              <td data-label="Date">April 12, 2025</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">AGM</td>
+              <td data-label="Key Topics">Budget approved $580/lot · Cistern cleaning · Generator install · Sarah Greer auditor · Kerri Kryger resigned · Sarah Greer &amp; Kylee Gairns joined board</td>
+              <td data-label="Document"><a href="docs/Annual_General_Meeting_12APR2025.pdf" download>Download ↓</a></td>
             </tr>
             <tr>
-              <td>April 20, 2024</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM</td>
-              <td>Budget approved $727/lot · Generator purchase approved · Weed spraying vote · Gina Rebere joins as Executive Assistant · Will Prince auditor</td>
-              <td><a href="docs/Annual_General_Meeting_20APR2024.pdf" download>Download ↓</a></td>
+              <td data-label="Date">April 20, 2024</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">AGM</td>
+              <td data-label="Key Topics">Budget approved $727/lot · Generator purchase approved · Weed spraying vote · Gina Rebere joins as Executive Assistant · Will Prince auditor</td>
+              <td data-label="Document"><a href="docs/Annual_General_Meeting_20APR2024.pdf" download>Download ↓</a></td>
             </tr>
             <tr>
-              <td>April 2, 2022</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM</td>
-              <td>Budget approved $540/lot · Common space &amp; roadway acquisition confirmed · Will Prince elected auditor · Short-term rental guidelines discussed</td>
-              <td><a href="docs/agm_2022_minutes.pdf" download>Download ↓</a></td>
+              <td data-label="Date">April 2, 2022</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">AGM</td>
+              <td data-label="Key Topics">Budget approved $540/lot · Common space &amp; roadway acquisition confirmed · Will Prince elected auditor · Short-term rental guidelines discussed</td>
+              <td data-label="Document"><a href="docs/agm_2022_minutes.pdf" download>Download ↓</a></td>
             </tr>
             <tr>
-              <td>May 15, 2021</td>
-              <td><span class="meeting-board-tag tag-water">Water Co-op</span></td>
-              <td>AGM (2020 &amp; 2021)</td>
-              <td>Combined 2020 &amp; 2021 AGM via Zoom · New board members elected · HOA investigation concluded · Common space acquisition vote carried · Seasonal fee structure defeated</td>
-              <td><a href="docs/2020___2021_AGM_Minutes.pdf" download>Download ↓</a></td>
+              <td data-label="Date">May 15, 2021</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">AGM (2020 &amp; 2021)</td>
+              <td data-label="Key Topics">Combined 2020 &amp; 2021 AGM via Zoom · New board members elected · HOA investigation concluded · Common space acquisition vote carried · Seasonal fee structure defeated</td>
+              <td data-label="Document"><a href="docs/2020___2021_AGM_Minutes.pdf" download>Download ↓</a></td>
             </tr>
           </tbody>
         </table>
