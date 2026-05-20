@@ -1,5 +1,5 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 18, 2026 · Follow-up survey strip + card 1 added in orange/accent colour; contact section redesigned; new emails; footer domain updated_
+_Last updated: May 19, 2026 · FAQ Coming Soon added: nav link (before Contact), announcement card (Card 1, pine highlight), dedicated #faq section (between Minutes and Contact), footer quick link_
 
 ---
 
@@ -65,6 +65,7 @@ mountainvista/                          ← GitHub repo root
 | Meetings | #meetings | ✅ Real data | 4 past meeting cards |
 | Financials | #financials | ✅ Real data | 2026 budget + 2025 actuals + doc archive |
 | Meeting Minutes | #minutes | ✅ Real data | 6 AGM entries, all PDF links |
+| FAQ | #faq | ⏳ Coming Soon | Pending board approval — placeholder section + announcement card + nav link |
 | Contact Form | #contact | ✅ Complete | Two choice cards → separate pages; new @mountainvistaestates.ca emails |
 | Footer | footer | ✅ Complete | www.mountainvistaestates.ca |
 
@@ -276,3 +277,4 @@ Script location: /home/claude/build_erp_pdf.py (Claude session — recreate in n
 - Budget spreadsheets (Excel)
 - AGM presentation slides (PowerPoint)
 - Fire ban auto-update if Alberta API ever adds CORS support
+- **FAQ section** — replace coming-soon placeholder with real FAQ content once board approves

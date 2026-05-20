@@ -398,6 +398,30 @@
     td a { color: var(--brown); font-weight: 700; text-decoration: none; }
     td a:hover { color: var(--accent); text-decoration: underline; }
 
+    /* ── FAQ ── */
+    #faq { background: var(--cream); }
+    .faq-coming-soon {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background: #fff; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 4rem 3rem;
+      border-top: 4px solid var(--pine);
+      max-width: 680px; margin: 0 auto;
+    }
+    .faq-icon { font-size: 3rem; margin-bottom: 1.2rem; }
+    .faq-coming-soon h3 {
+      font-family: var(--font-display); font-size: 1.6rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 0.8rem;
+    }
+    .faq-coming-soon p { font-size: 0.95rem; color: var(--muted); max-width: 480px; line-height: 1.75; margin-bottom: 1.8rem; }
+    .faq-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--sand); color: var(--brown);
+      padding: 0.45rem 1.2rem; border-radius: 99px;
+    }
+
     /* ── Contact ── */
     #contact { background: var(--cream); }
     .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
@@ -588,6 +612,7 @@
       <li><a href="#meetings">Meetings</a></li>
       <li><a href="#financials">Financials</a></li>
       <li><a href="#minutes">Minutes</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -696,7 +721,15 @@
       </div>
       <div class="announcements-grid">
 
-        <!-- CARD 1: Follow-up Survey — pinned first -->
+        <!-- CARD 1: FAQ Coming Soon -->
+        <div class="announcement-card reveal" style="border-left-color: var(--pine); border-left-width: 5px; border-top: 3px solid var(--pine); background: linear-gradient(135deg, #fff 75%, #e8f4e6 100%); box-shadow: 0 4px 20px rgba(74,103,65,0.18);">
+          <div class="ann-tag" style="background:#d8f0d5; color:#4a6741;">📋 Community</div>
+          <h3>FAQ Section — Coming Soon</h3>
+          <p>A Frequently Asked Questions section is currently in development and awaiting board approval. Check back soon for answers to common questions about the Water Co-op, Community Committee, fees, and more.</p>
+          <div class="ann-date">📅 May 2026 — Community</div>
+        </div>
+
+        <!-- CARD 2: Follow-up Survey — pinned -->
         <div class="announcement-card reveal" style="border-left-color: var(--accent); border-left-width: 5px; border-top: 3px solid var(--accent); background: linear-gradient(135deg, #fff 70%, #fdecd8 100%); box-shadow: 0 4px 20px rgba(192,98,42,0.2);">
           <div class="ann-tag" style="background:#fdecd8; color:var(--accent);">📋 Survey — Action Required</div>
           <h3>Community Committee Follow-up Survey — Have Your Say!</h3>
@@ -725,6 +758,21 @@
           <div class="ann-date">📅 Posted: May 15, 2026 — Community Committee</div>
         </div>
 
+        <!-- CARD 3: May 18 Board Meeting Minutes -->
+        <div class="announcement-card reveal" style="border-left-color: var(--sky); border-left-width: 5px; border-top: 3px solid var(--sky); background: linear-gradient(135deg, #fff 75%, #eaf3f8 100%); box-shadow: 0 4px 20px rgba(122,163,184,0.2);">
+          <div class="ann-tag" style="background:#daeef7; color:#3a6b7a;">📋 Water Co-op</div>
+          <h3>May 18 Board Meeting — Minutes Now Available</h3>
+          <p>The Water Co-op held a board meeting on May 18, 2026. Three resignations acknowledged (Sarah, Dave, Shane). Dennis Dumais and Brett Hutchinson voted onto the board; Julio Gonzalez confirmed as Communications Officer. Irrigation water is on for the season — please conserve. Co-op and community accounts to be separated.</p>
+          <div style="margin-top:1rem;">
+            <a href="docs/WaterCoop_MeetingMinutes_May18_2026.pdf" download
+               style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:#3a6b7a;padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
+               onmouseover="this.style.background='#5d9aad'" onmouseout="this.style.background='#3a6b7a'">
+              ⬇ Download Minutes (PDF)
+            </a>
+          </div>
+          <div class="ann-date">📅 Posted: May 19, 2026 — Water Co-op</div>
+        </div>
+
         <!-- AGM Minutes -->
         <div class="announcement-card reveal" style="border-left-color: var(--brown); border-left-width: 5px; border-top: 3px solid var(--tan); background: linear-gradient(135deg, #fff 75%, #f5ebe0 100%); box-shadow: 0 4px 20px rgba(139,99,64,0.18);">
           <div class="ann-tag" style="background:#f0e6d3; color:#8b6340;">📋 Water Co-op</div>
@@ -741,11 +789,11 @@
         </div>
 
         <!-- Irrigation Water -->
-        <div class="announcement-card urgent reveal">
-          <div class="ann-tag urgent-tag">🚨 Water Co-op</div>
-          <h3>Irrigation Water Turn-On — Date TBD</h3>
-          <p>The UID controls the timing of irrigation turn-on and provides no advance notice. Do not use your cistern water for irrigation — use the irrigation tap only.</p>
-          <div class="ann-date">📅 Posted: May 2026 — Water Co-op</div>
+        <div class="announcement-card reveal">
+          <div class="ann-tag">💧 Water Co-op</div>
+          <h3>Irrigation Water Is On for the Season</h3>
+          <p>Irrigation water has been turned on for the 2026 season. Please conserve water. Do not use your cistern water for irrigation — use the irrigation tap only.</p>
+          <div class="ann-date">📅 Updated: May 19, 2026 — Water Co-op</div>
         </div>
 
         <!-- Speed Bumps -->
@@ -800,10 +848,19 @@
               <div class="member-info"><span class="member-name">Keith Wagner</span><span class="member-role">President</span></div>
             </li>
             <li class="member-row">
-              <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Executive Assistant</span></div>
+              <div class="member-info"><span class="member-name">Gina Rebere</span><span class="member-role">Vice President</span></div>
             </li>
             <li class="member-row">
-              <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Member</span></div>
+              <div class="member-info"><span class="member-name">Kylee Gairns</span><span class="member-role">Secretary</span></div>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Julio Gonzalez</span><span class="member-role">Communications Officer</span></div>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Dennis Dumais</span><span class="member-role">Member</span></div>
+            </li>
+            <li class="member-row">
+              <div class="member-info"><span class="member-name">Brett Hutchinson</span><span class="member-role">Member</span></div>
             </li>
           </ul>
           <div class="board-footer">
@@ -978,39 +1035,39 @@
       </div>
       <div class="meetings-grid">
         <div class="meeting-card reveal">
-          <div class="meeting-date-block"><div class="meeting-month">Jan</div><div class="meeting-day">15</div></div>
+          <div class="meeting-date-block"><div class="meeting-month">May</div><div class="meeting-day">18</div></div>
           <div class="meeting-info">
-            <h3>[Placeholder] Water Co-op Board Meeting</h3>
-            <p>[Time] · [Location]</p>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Agenda: [Topic 1], [Topic 2]</p>
+            <h3>Water Co-op Board Meeting</h3>
+            <p>2026 · Board transitions &amp; governance</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Board appointments · Financial account separation · Irrigation update · Shed placement</p>
             <span class="meeting-board-tag tag-water">Water Co-op</span>
           </div>
         </div>
         <div class="meeting-card reveal">
-          <div class="meeting-date-block"><div class="meeting-month">Feb</div><div class="meeting-day">8</div></div>
+          <div class="meeting-date-block"><div class="meeting-month">Apr</div><div class="meeting-day">18</div></div>
           <div class="meeting-info">
-            <h3>[Placeholder] Community Committee Meeting</h3>
-            <p>[Time] · [Location]</p>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Agenda: [Topic 1], [Topic 2]</p>
-            <span class="meeting-board-tag tag-committee">Committee</span>
-          </div>
-        </div>
-        <div class="meeting-card reveal">
-          <div class="meeting-date-block"><div class="meeting-month">Mar</div><div class="meeting-day">22</div></div>
-          <div class="meeting-info">
-            <h3>[Placeholder] Annual General Meeting — Water Co-op</h3>
-            <p>[Time] · [Location]</p>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Financials, board elections, resident Q&amp;A</p>
+            <h3>2026 Annual General Meeting</h3>
+            <p>2026 · Water Co-op AGM</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Budget approved $574/lot · 2025 net income $527 · Reserve fund $39,362 · Board reduced to 3 members</p>
             <span class="meeting-board-tag tag-water">Water Co-op AGM</span>
           </div>
         </div>
         <div class="meeting-card reveal">
-          <div class="meeting-date-block"><div class="meeting-month">Apr</div><div class="meeting-day">5</div></div>
+          <div class="meeting-date-block"><div class="meeting-month">Jan</div><div class="meeting-day">28</div></div>
           <div class="meeting-info">
-            <h3>[Placeholder] Annual General Meeting — Community Committee</h3>
-            <p>[Time] · [Location]</p>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Financials, board elections, resident Q&amp;A</p>
-            <span class="meeting-board-tag tag-committee">Committee AGM</span>
+            <h3>Water Co-op Board Meeting</h3>
+            <p>2026 · Rules &amp; AGM planning</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Rules review · AGM planning · Generator confirmed</p>
+            <span class="meeting-board-tag tag-water">Water Co-op</span>
+          </div>
+        </div>
+        <div class="meeting-card reveal">
+          <div class="meeting-date-block"><div class="meeting-month">Jun</div><div class="meeting-day">4</div></div>
+          <div class="meeting-info">
+            <h3>Community Improvement Meeting</h3>
+            <p>2025 · Community Committee</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:0.3rem">Survey results · Speed bumps · August Long planning</p>
+            <span class="meeting-board-tag tag-committee">Committee</span>
           </div>
         </div>
       </div>
@@ -1125,6 +1182,13 @@
             </tr>
           </thead>
           <tbody>
+            <tr style="background:#eaf3f8;">
+              <td data-label="Date">May 18, 2026</td>
+              <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
+              <td data-label="Meeting Type">Board Meeting</td>
+              <td data-label="Key Topics">Board transitions · Dennis Dumais &amp; Brett Hutchinson admitted · Julio Gonzalez appointed Communications Officer · Irrigation water on · Accounts to be separated · Shed placement TBD</td>
+              <td data-label="Document"><a href="docs/WaterCoop_MeetingMinutes_May18_2026.pdf" download>Download ↓</a></td>
+            </tr>
             <tr>
               <td data-label="Date">April 18, 2026</td>
               <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
@@ -1166,6 +1230,24 @@
       <p style="margin-top:1.2rem;font-size:0.82rem;color:var(--muted);text-align:center;">
         AGM Reports (which include full financial statements) are available in the <a href="#financials" style="color:var(--brown);font-weight:700;">Financials section</a> above.
       </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Resources</div>
+        <h2>Frequently Asked Questions</h2>
+        <div class="divider"></div>
+        <p>Answers to common questions about life at Mountain Vista Estates.</p>
+      </div>
+      <div class="faq-coming-soon reveal">
+        <div class="faq-icon">🔎</div>
+        <h3>FAQ Coming Soon</h3>
+        <p>We're compiling answers to the most common questions about the Water Co-op, Community Committee, annual fees, water service, events, and more. This section is awaiting final board approval and will be published shortly.</p>
+        <div class="faq-pill">⏳ Pending Board Approval</div>
+      </div>
     </div>
   </section>
 
@@ -1237,6 +1319,7 @@
           <li><a href="#meetings">Meetings</a></li>
           <li><a href="#financials">Financials</a></li>
           <li><a href="#minutes">Meeting Minutes</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
