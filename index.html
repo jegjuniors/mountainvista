@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
   <title>Mountain Vista Estates — Community Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -91,44 +90,117 @@
     /* ── Hero ── */
     .hero {
       position: relative;
-      width: 100%;
+      height: 100vh; min-height: 600px;
+      display: flex; flex-direction: column;
       overflow: hidden;
     }
 
-    /* Full-width hero image */
-    .hero-img {
+    /* Two-panel split — desktop only */
+    .hero-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      position: relative;
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
       display: block;
-      width: 100%;
-      height: auto;
+      transition: transform 8s ease;
+    }
+    .hero-panel:hover img { transform: scale(1.04); }
+
+    /* dark overlay on each panel */
+    .hero-panel::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(20,10,5,0.15) 0%, rgba(20,10,5,0.65) 100%);
     }
 
-    /* Button overlay — sits at the very bottom of the image, below all baked-in text */
-    .hero-btns-overlay {
+    /* centre divider line — desktop only */
+    .hero-panels::before {
+      content: '';
       position: absolute;
-      bottom: 1.5%;
-      left: 50%;
+      left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      background: rgba(255,255,255,0.3);
+      z-index: 3;
       transform: translateX(-50%);
-      z-index: 5;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    @media (max-width: 600px) {
-      .hero-btns-overlay {
-        bottom: 1%;
-        gap: 0.6rem;
-        width: 90%;
-      }
-      .hero-btns-overlay .btn {
-        padding: 0.65rem 1.4rem;
-        font-size: 0.78rem;
-      }
     }
 
-    /* ── Sign strip — no longer used ── */
+    /* label on each panel */
+    .hero-panel-label {
+      position: absolute;
+      bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+      z-index: 4;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.25rem 0.85rem;
+      border-radius: 99px;
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* centred overlay content */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      z-index: 5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+    .hero-overlay > * { pointer-events: auto; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 0.35rem 1.1rem; border-radius: 99px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4);
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 em { font-style: italic; color: #ffd4a0; }
+
+    .hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.95);
+      margin: 1rem 0 2rem;
+      max-width: 480px;
+      font-weight: 400;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Sign strip (mobile: shown below hero; desktop: hidden — sign is in panel) ── */
     .sign-strip {
-      display: none;
+      display: none; /* hidden on desktop — sign already visible in hero panel */
     }
 
     .btn {
@@ -154,7 +226,19 @@
     }
     .btn-outline:hover { background: rgba(255,255,255,0.28); transform: translateY(-2px); }
 
-
+    .hero-scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 6;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll-hint svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
 
     /* ── Stats strip ── */
     .stats-strip {
@@ -421,8 +505,64 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; }
 
-      /* Hero: full-width image scales naturally on mobile */
-      .sign-strip { display: none; }
+      /* Hero: show only the sunset panel, full-bleed */
+      .hero { height: 100svh; min-height: 520px; }
+      .hero-panels {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: 100%;
+      }
+      /* Hide the sign panel on mobile — it shows in the strip below */
+      .hero-panel:nth-child(2) { display: none; }
+      /* Remove the divider line */
+      .hero-panels::before { display: none; }
+      /* Hide the "Evening at the pond" label — no room */
+      .hero-panel-label { display: none; }
+      /* Deepen the overlay for text legibility */
+      .hero-panel::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.15) 0%,
+          rgba(0,0,0,0.55) 40%,
+          rgba(0,0,0,0.72) 100%
+        );
+      }
+      /* Title sizing */
+      .hero h1 { font-size: 2.4rem; }
+      /* Subtitle pill — full width on mobile */
+      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+      /* Stack buttons */
+      .hero-btns { flex-direction: column; align-items: center; width: 100%; }
+      .hero-btns .btn { width: 100%; max-width: 320px; text-align: center; }
+
+      /* Sign strip: visible on mobile */
+      .sign-strip {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        background: var(--dark);
+        padding: 1.2rem 1.5rem;
+        overflow: hidden;
+      }
+      .sign-strip img {
+        width: 80px; height: 80px;
+        object-fit: cover; object-position: center 30%;
+        border-radius: var(--radius);
+        flex-shrink: 0;
+        border: 2px solid var(--tan);
+      }
+      .sign-strip-text { color: #fff; }
+      .sign-strip-text strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1rem; font-weight: 600;
+        color: var(--tan);
+      }
+      .sign-strip-text span {
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.55);
+        letter-spacing: 0.06em;
+      }
 
       /* Minutes table → card layout on mobile */
       .minutes-table-wrap { overflow-x: unset; }
@@ -490,21 +630,45 @@
 
   <!-- HERO -->
   <header class="hero">
-    <img
-      class="hero-img"
-      src="images/Site_Hero-Image.png"
-      alt="Aerial view of Mountain Vista Estates — A Great View. A Better Place to Live. Nestled in the heart of Cardston County, Alberta"
-      loading="eager"
-    />
-    <!-- Button overlay in the clean bottom-center area -->
-    <div class="hero-btns-overlay">
-      <a href="#announcements" class="btn btn-primary">See Latest News</a>
-      <a href="#contact" class="btn btn-outline">Contact a Board</a>
+    <div class="hero-panels">
+      <!-- Panel 1: Sunset -->
+      <div class="hero-panel">
+        <img src="images/sunset.jpg" alt="Stunning sunset over Mountain Vista Estates" loading="eager" />
+        <span class="hero-panel-label">Evening at the pond</span>
+      </div>
+      <!-- Panel 2: Sign -->
+      <div class="hero-panel">
+        <img src="images/sign.jpg" alt="Mountain Vista Estates entrance sign" loading="eager" />
+        <span class="hero-panel-label">Welcome home</span>
+      </div>
+    </div>
+
+    <!-- Centred overlay -->
+    <div class="hero-overlay">
+      <div class="hero-eyebrow">Cardston County, Alberta</div>
+      <h1>Welcome to<br /><em>Mountain Vista Estates</em></h1>
+      <p class="hero-sub">Your community hub for news, meetings, and resident resources — keeping all 42 households connected and informed.</p>
+      <div class="hero-btns">
+        <a href="#announcements" class="btn btn-primary">See Latest News</a>
+        <a href="#contact" class="btn btn-outline">Contact a Board</a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <svg viewBox="0 0 16 16"><polyline points="2,5 8,11 14,5"/></svg>
     </div>
   </header>
 
-  <!-- SIGN STRIP — no longer used (sign is in hero image) -->
-  <div class="sign-strip"></div>
+  <!-- SIGN STRIP (mobile only) -->
+  <div class="sign-strip">
+    <img src="images/sign.jpg" alt="Mountain Vista Estates entrance sign" />
+    <div class="sign-strip-text">
+      <strong>Mountain Vista Estates</strong>
+      <span>Cardston County, AB · Est. Community</span>
+    </div>
+  </div>
 
   <!-- STATS -->
   <div class="stats-strip">
@@ -606,7 +770,7 @@
         <div class="announcement-card reveal" style="border-left-color: var(--sky); border-left-width: 5px; border-top: 3px solid var(--sky); background: linear-gradient(135deg, #fff 75%, #eaf3f8 100%); box-shadow: 0 4px 20px rgba(122,163,184,0.2);">
           <div class="ann-tag" style="background:#daeef7; color:#3a6b7a;">📋 Water Co-op</div>
           <h3>May 18 Board Meeting — Minutes Now Available</h3>
-          <p>The Water Co-op held a board meeting on May 18, 2026. Three resignations acknowledged (Sarah, Dave, Shane). Dennis Dumais and Brett Hutchinson voted onto the board; Julio Gonzalez confirmed as Communications Officer. Irrigation water is on for the season — please conserve. Co-op and community accounts to be separated.</p>
+          <p>The Water Co-op held a board meeting on May 18, 2026. Three resignations acknowledged (Sarah, Dave, Shane). Denis Dumais and Brett Hutchinson voted onto the board; Julio Gonzalez confirmed as Communications Officer. Irrigation water is on for the season — please conserve. Co-op and community accounts to be separated.</p>
           <div style="margin-top:1rem;">
             <a href="docs/WaterCoop_MeetingMinutes_May18_2026.pdf" download
                style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:700;color:#fff;background:#3a6b7a;padding:0.45rem 1rem;border-radius:4px;text-decoration:none;transition:background 0.2s;"
@@ -716,7 +880,7 @@
               <div class="member-info"><span class="member-name">Julio Gonzalez</span><span class="member-role">Communications Officer</span></div>
             </li>
             <li class="member-row">
-              <div class="member-info"><span class="member-name">Dennis Dumais</span><span class="member-role">Member</span></div>
+              <div class="member-info"><span class="member-name">Denis Dumais</span><span class="member-role">Treasurer</span></div>
             </li>
             <li class="member-row">
               <div class="member-info"><span class="member-name">Brett Hutchinson</span><span class="member-role">Member</span></div>
@@ -1050,7 +1214,7 @@
               <td data-label="Date">May 18, 2026</td>
               <td data-label="Board"><span class="meeting-board-tag tag-water">Water Co-op</span></td>
               <td data-label="Meeting Type">Board Meeting</td>
-              <td data-label="Key Topics">Board transitions · Dennis Dumais &amp; Brett Hutchinson admitted · Julio Gonzalez appointed Communications Officer · Irrigation water on · Accounts to be separated · Shed placement TBD</td>
+              <td data-label="Key Topics">Board transitions · Denis Dumais &amp; Brett Hutchinson admitted · Julio Gonzalez appointed Communications Officer · Irrigation water on · Accounts to be separated · Shed placement TBD</td>
               <td data-label="Document"><a href="docs/WaterCoop_MeetingMinutes_May18_2026.pdf" download>Download ↓</a></td>
             </tr>
             <tr>
