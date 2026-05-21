@@ -1,5 +1,5 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 20, 2026 · GCBD Rules & Regulations added: announcement Card 5 + Governance Doc · Google Analytics GA4 added (G-6ZLRQL5VH1)_
+_Last updated: May 21, 2026 · Hero replaced with full-width Site_Hero-Image.png · text overlay + sign strip removed · Learn More hotspot added_
 
 ---
 
@@ -23,8 +23,9 @@ mountainvista/                          ← GitHub repo root
 ├── contact-committee.html              ← Community Committee contact form page
 ├── _headers                            ← Netlify headers (Content-Type + Content-Disposition: attachment)
 ├── images/
-│   ├── sunset.jpg                      ← Hero panel left
-│   └── sign.jpg                        ← Hero panel right (mobile strip)
+│   ├── Site_Hero-Image.png             ← NEW hero image (full-width, text baked in)
+│   ├── sunset.jpg                      ← No longer used in hero (keep for now)
+│   └── sign.jpg                        ← No longer used in hero (keep for now)
 └── docs/
     ├── 2022_AGM_Report.pdf
     ├── 2023_AGM_Report.pdf
@@ -40,10 +41,12 @@ mountainvista/                          ← GitHub repo root
     ├── 2020___2021_AGM_Minutes.pdf             ← replaces agm_2020_2021_minutes.docx
     ├── agm_2022_minutes.pdf                    ← unchanged
     ├── WaterCoop_MeetingMinutes_May18_2026.pdf
-    └── GCBD_Rules_and_Regulations_2026.pdf     ← NEW — upload to GitHub repo
+    └── GCBD_Rules_and_Regulations_2026.pdf
 ```
 
 > **`_headers`** must always be present. Sets Content-Type AND Content-Disposition: attachment on all PDFs and docx files.
+>
+> **⚠️ IMPORTANT — upload Site_Hero-Image.png** to the `images/` folder in the GitHub repo before deploying.
 >
 > **Old docx files** (agm_2025_minutes.docx, agm_2024_minutes.docx, agm_2020_2021_minutes.docx, Emergency_Response_Plan.docx, Rules_and_Regulations.docx) are no longer linked — can be deleted from repo.
 >
@@ -56,8 +59,8 @@ mountainvista/                          ← GitHub repo root
 | Section | ID | Status | Notes |
 |---|---|---|---|
 | Navigation | nav | ✅ Complete | Sticky, mobile hamburger; News · Boards · Survey · Meetings · Financials · Minutes · Contact |
-| Hero | .hero | ✅ Complete | Split-panel desktop, single sunset mobile |
-| Sign Strip | .sign-strip | ✅ Complete | Mobile only |
+| Hero | .hero | ✅ Updated | Full-width Site_Hero-Image.png; text overlay removed; invisible hotspot on Learn More → #announcements |
+| Sign Strip | .sign-strip | 🗑️ Removed | No longer needed — sign content is in hero image |
 | Stats Strip | .stats-strip | ✅ Complete | 42 lots, 2 boards, 1 co-op, 2026 fiscal year |
 | Fire Ban Strip | #fireban-strip | ✅ Manual | Slim bar above Survey Strip — change data-status to update |
 | Survey Strip | .survey-strip | ⏳ Temporary | Orange/accent gradient bar — remove after May 29, 2026 @ 5pm when survey closes |
@@ -70,6 +73,18 @@ mountainvista/                          ← GitHub repo root
 | FAQ | #faq | ⏳ Coming Soon | Pending board approval — placeholder section + announcement card + nav link |
 | Contact Form | #contact | ✅ Complete | Two choice cards → separate pages; new @mountainvistaestates.ca emails |
 | Footer | footer | ✅ Complete | www.mountainvistaestates.ca |
+
+---
+
+## Hero Section — Updated May 21, 2026
+
+- **Image:** `images/Site_Hero-Image.png` — full-width, height auto (scales with aspect ratio)
+- **Text overlay:** removed entirely (logo, tagline, location text all baked into the image)
+- **Buttons:** `.hero-btns-overlay` — absolutely positioned bottom-center over the clean open area below the baked-in text
+  - "See Latest News" → `#announcements` (btn-primary / accent orange)
+  - "Contact a Board" → `#contact` (btn-outline / white ghost)
+  - Responsive: stacks and shrinks on mobile below 600px
+- **Sign strip:** removed (was mobile-only; no longer needed)
 
 ---
 
@@ -133,7 +148,7 @@ Cards 1, 2 & 3 highlighted: 5px left border + 3px coloured top stripe + tinted s
 | 2 ⭐ | Community Committee Follow-up Survey — Have Your Say! | 📋 Survey — Action Required | May 15, 2026 |
 | 3 ⭐ | 2026 Community Survey — Results Are In! | 📊 Survey Results | May 15, 2026 |
 | 4 | May 18 Board Meeting — Minutes Now Available | 📋 Water Co-op | May 19, 2026 |
-| 5 🆕 | GCBD Rules & Regulations — Important Notice for Lot Owners | 📋 Notice | May 20, 2026 |
+| 5 | GCBD Rules & Regulations — Important Notice for Lot Owners | 📋 Notice | May 20, 2026 |
 | 6 | Irrigation Water Is On for the Season | 💧 Water Co-op | May 19, 2026 |
 | 7 | Speed Bumps & Sign Reinstalled | 🏘️ Community | May 7, 2026 |
 | 8 | Pond Fountain Is In for the Season | 🌊 Community | May 2, 2026 |
@@ -180,7 +195,7 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf
 - Emergency Response Plan v4.1 (PDF, Dec 9 2024)
 - Water Co-op Membership Agreement (PDF)
 - Membership Agreement — Section 6 Addendum (PDF)
-- GCBD Rules & Regulations (PDF, May 2026) ← NEW
+- GCBD Rules & Regulations (PDF, May 2026)
 
 ---
 
@@ -212,6 +227,7 @@ Contact section now shows two clickable choice cards that link to dedicated page
 - `contact-committee.html` — Community Committee form (Netlify form name: `contact-committee`)
 
 Each page has a category dropdown, sidebar with board info, and success message on submit.
+- Success message "Back to Contact" link goes to `index.html#contact` (fixed May 21 — was incorrectly pointing to `index.html`)
 
 ---
 
@@ -237,7 +253,26 @@ Each page has a category dropdown, sidebar with board info, and success message 
 
 ---
 
-## Google Analytics
+## Search Engine Blocking — Added May 21, 2026
+
+- **`robots.txt`** in repo root — tells all crawlers to stay out
+- **`<meta name="robots" content="noindex, nofollow">`** in `<head>` of all pages
+
+Pages that need the meta tag:
+- [x] `index.html` ← done
+- [x] `contact-watercoop.html` ← done
+- [x] `contact-committee.html` ← done
+
+Add this line to each contact page, right after `<meta name="viewport" ...>`:
+```html
+<meta name="robots" content="noindex, nofollow" />
+```
+
+> Note: robots.txt and noindex are a polite request — Google and Bing will respect it, but the site remains publicly accessible to anyone with the URL. Not a security measure.
+
+---
+
+
 
 - **Platform:** Google Analytics 4 (GA4)
 - **Measurement ID:** `G-6ZLRQL5VH1`
@@ -256,7 +291,8 @@ Each page has a category dropdown, sidebar with board info, and success message 
 
 ## Known Issues / History
 
-- Mobile hero fixed: sign panel hidden on mobile, sign-strip shown below hero.
+- Mobile hero fixed: sign panel hidden on mobile, sign-strip shown below hero. ← NOW RESOLVED via new full-width hero image
+- Hero replaced May 21 2026: single full-width Site_Hero-Image.png, text overlay removed, Learn More hotspot added
 - Board section uses colour-coded top borders: pine = Water Co-op, tan = Committee.
 - PDF files in original project uploads were corrupted. Real files re-uploaded by owner.
 - Document links: both download attribute AND _headers Content-Disposition required.
