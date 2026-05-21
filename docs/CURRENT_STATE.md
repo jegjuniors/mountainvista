@@ -1,5 +1,5 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 19, 2026 · FAQ Coming Soon added: nav link (before Contact), announcement card (Card 1, pine highlight), dedicated #faq section (between Minutes and Contact), footer quick link_
+_Last updated: May 20, 2026 · GCBD Rules & Regulations added: announcement Card 5 + Governance Doc · Google Analytics GA4 added (G-6ZLRQL5VH1)_
 
 ---
 
@@ -38,7 +38,9 @@ mountainvista/                          ← GitHub repo root
     ├── Annual_General_Meeting_12APR2025.pdf    ← replaces agm_2025_minutes.docx
     ├── Annual_General_Meeting_20APR2024.pdf    ← replaces agm_2024_minutes.docx
     ├── 2020___2021_AGM_Minutes.pdf             ← replaces agm_2020_2021_minutes.docx
-    └── agm_2022_minutes.pdf                    ← unchanged
+    ├── agm_2022_minutes.pdf                    ← unchanged
+    ├── WaterCoop_MeetingMinutes_May18_2026.pdf
+    └── GCBD_Rules_and_Regulations_2026.pdf     ← NEW — upload to GitHub repo
 ```
 
 > **`_headers`** must always be present. Sets Content-Type AND Content-Disposition: attachment on all PDFs and docx files.
@@ -59,8 +61,8 @@ mountainvista/                          ← GitHub repo root
 | Stats Strip | .stats-strip | ✅ Complete | 42 lots, 2 boards, 1 co-op, 2026 fiscal year |
 | Fire Ban Strip | #fireban-strip | ✅ Manual | Slim bar above Survey Strip — change data-status to update |
 | Survey Strip | .survey-strip | ⏳ Temporary | Orange/accent gradient bar — remove after May 29, 2026 @ 5pm when survey closes |
-| Announcements | #announcements | ✅ Real data | 7 cards — cards 1, 2 & 3 highlighted; survey strip above |
-| Boards | #boards | ✅ Real data | Water Co-op: 3 members; Committee: 6 members |
+| Announcements | #announcements | ✅ Real data | 8 cards — cards 1, 2 & 3 highlighted |
+| Boards | #boards | ✅ Real data | Water Co-op: 6 members; Committee: 6 members |
 | Survey Results | #survey | ✅ Real data | 2026 survey (37 responses) |
 | Meetings | #meetings | ✅ Real data | 4 past meeting cards |
 | Financials | #financials | ✅ Real data | 2026 budget + 2025 actuals + doc archive |
@@ -95,14 +97,15 @@ To update, find this line in index.html and change data-status:
 
 ## Current Board Members
 
-### Water Co-op Board (3 members — reduced May 2026)
+### Water Co-op Board (6 members — updated May 2026)
 | Name | Role | Email |
 |---|---|---|
 | Keith Wagner | President | catapultdesigns@shaw.ca |
-| Gina Rebere | Executive Assistant | ginarebere@gmail.com |
-| Kylee Gairns | Member | kylee.gairns666@gmail.com |
-
-> Dave May, Shane McMorrow, and Sarah Greer removed from Water Co-op board as of May 2026.
+| Gina Rebere | Vice President | ginarebere@gmail.com |
+| Kylee Gairns | Secretary | kylee.gairns666@gmail.com |
+| Julio Gonzalez | Communications Officer | — |
+| Dennis Dumais | Member | — |
+| Brett Hutchinson | Member | — |
 
 ### Community Committee (6 members)
 | Name | Role | Email |
@@ -120,19 +123,21 @@ To update, find this line in index.html and change data-status:
 
 ---
 
-## Announcements — 7 Cards
+## Announcements — 8 Cards
 
 Cards 1, 2 & 3 highlighted: 5px left border + 3px coloured top stripe + tinted shadow.
 
 | # | Title | Tag | Date |
 |---|---|---|---|
-| 1 ⭐ | Community Committee Follow-up Survey — Have Your Say! | 📋 Survey — Action Required | May 15, 2026 |
-| 2 ⭐ | 2026 Community Survey — Results Are In! | 📊 Survey Results | May 15, 2026 |
-| 3 ⭐ | 2026 AGM Minutes — Now Available | 📋 Water Co-op | April 18, 2026 |
-| 4 | Irrigation Water Turn-On — Date TBD | 🚨 Water Co-op (urgent) | May 2026 |
-| 5 | Speed Bumps & Sign Reinstalled | 🏘️ Community | May 7, 2026 |
-| 6 | Pond Fountain Is In for the Season | 🌊 Community | May 2, 2026 |
-| 7 | Septic Service Reminder — Jim Beck | 🔔 Notice | Apr 27, 2026 |
+| 1 ⭐ | FAQ Section — Coming Soon | 📋 Community | May 2026 |
+| 2 ⭐ | Community Committee Follow-up Survey — Have Your Say! | 📋 Survey — Action Required | May 15, 2026 |
+| 3 ⭐ | 2026 Community Survey — Results Are In! | 📊 Survey Results | May 15, 2026 |
+| 4 | May 18 Board Meeting — Minutes Now Available | 📋 Water Co-op | May 19, 2026 |
+| 5 🆕 | GCBD Rules & Regulations — Important Notice for Lot Owners | 📋 Notice | May 20, 2026 |
+| 6 | Irrigation Water Is On for the Season | 💧 Water Co-op | May 19, 2026 |
+| 7 | Speed Bumps & Sign Reinstalled | 🏘️ Community | May 7, 2026 |
+| 8 | Pond Fountain Is In for the Season | 🌊 Community | May 2, 2026 |
+| 9 | Septic Service Reminder — Jim Beck | 🔔 Notice | Apr 27, 2026 |
 
 > **Survey strip** sits between fire ban strip and announcements. Remove after May 29, 2026 @ 5pm (survey deadline). Strip links to Google Form: https://docs.google.com/forms/d/e/1FAIpQLSfXsDGqBQpFis2L3WZMzun8cW_H9XiAdGD9BKqsmXx0PPpAWw/viewform
 
@@ -175,6 +180,7 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf
 - Emergency Response Plan v4.1 (PDF, Dec 9 2024)
 - Water Co-op Membership Agreement (PDF)
 - Membership Agreement — Section 6 Addendum (PDF)
+- GCBD Rules & Regulations (PDF, May 2026) ← NEW
 
 ---
 
@@ -182,6 +188,7 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf
 
 | Date | Type | File |
 |---|---|---|
+| May 18, 2026 | Board Meeting | WaterCoop_MeetingMinutes_May18_2026.pdf |
 | April 18, 2026 | AGM | 2026_AGM_Report.pdf |
 | April 12, 2025 | AGM | Annual_General_Meeting_12APR2025.pdf |
 | April 20, 2024 | AGM | Annual_General_Meeting_20APR2024.pdf |
@@ -227,6 +234,16 @@ Each page has a category dropdown, sidebar with board info, and success message 
 ### Typography
 - Display: Playfair Display (Google Fonts)
 - Body: Lato (Google Fonts) — 300, 400, 700
+
+---
+
+## Google Analytics
+
+- **Platform:** Google Analytics 4 (GA4)
+- **Measurement ID:** `G-6ZLRQL5VH1`
+- **Added:** May 20, 2026
+- Snippet placed in `<head>` of `index.html`, immediately after the Google Fonts `<link>` tag
+- Tracks page views automatically; verify in GA4 → Reports → Realtime after deploy
 
 ---
 
