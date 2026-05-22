@@ -547,6 +547,18 @@
     </div>
   </div>
 
+  <!-- MEMBER PORTAL MODAL (nav button) -->
+  <div class="gate-overlay" id="portalOverlay">
+    <div class="gate-modal">
+      <button class="gate-close" id="portalClose" aria-label="Close">✕</button>
+      <div class="gate-icon">🏡</div>
+      <h3>Member Portal</h3>
+      <p>Log in to access member-only documents including AGM reports, meeting minutes, financial statements, and governance documents.</p>
+      <button class="gate-btn" onclick="netlifyIdentity.open(); document.getElementById('portalOverlay').classList.remove('active');">Log In to Member Portal</button>
+      <p class="gate-note">Don't have an account? <a href="contact-watercoop.html" style="color:var(--pine);font-weight:700;text-decoration:underline;">Contact the Water Co-op board</a> to request member access.</p>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Mountain <span>Vista</span> Estates</a>
@@ -561,7 +573,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:0.8rem;">
-      <button id="member-login-btn" onclick="document.getElementById('gateOverlay').classList.add('active')" style="display:none;font-family:var(--font-body);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--pine);background:transparent;border:1.5px solid var(--pine);border-radius:99px;padding:0.4rem 1rem;cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--pine)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--pine)'">🔒 Member Login</button>
+      <button id="member-login-btn" onclick="document.getElementById('portalOverlay').classList.add('active')" style="display:none;font-family:var(--font-body);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--pine);background:transparent;border:1.5px solid var(--pine);border-radius:99px;padding:0.4rem 1rem;cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--pine)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--pine)'">🔒 Member Login</button>
       <button id="member-logout-btn" onclick="netlifyIdentity.logout()" style="display:none;font-family:var(--font-body);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:transparent;border:1.5px solid var(--sand);border-radius:99px;padding:0.4rem 1rem;cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--sand)';this.style.color='var(--dark)'" onmouseout="this.style.background='transparent';this.style.color='var(--muted)'">✓ Logged In · Sign Out</button>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1369,11 +1381,19 @@
       document.getElementById('gateOverlay').classList.add('active');
     });
 
-    // Close modal
+    // Close gate modal
     document.getElementById('gateClose').addEventListener('click', () => {
       document.getElementById('gateOverlay').classList.remove('active');
     });
     document.getElementById('gateOverlay').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+
+    // Close portal modal
+    document.getElementById('portalClose').addEventListener('click', () => {
+      document.getElementById('portalOverlay').classList.remove('active');
+    });
+    document.getElementById('portalOverlay').addEventListener('click', function(e) {
       if (e.target === this) this.classList.remove('active');
     });
 
@@ -1391,8 +1411,8 @@
     netlifyIdentity.on('login', (user) => {
       updateNavButtons();
       netlifyIdentity.close();
-      // After login, close gate modal if open
       document.getElementById('gateOverlay').classList.remove('active');
+      document.getElementById('portalOverlay').classList.remove('active');
     });
     netlifyIdentity.on('logout', () => updateNavButtons());
 
