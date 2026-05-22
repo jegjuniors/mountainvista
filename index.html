@@ -1423,14 +1423,8 @@
     });
     netlifyIdentity.on('logout', () => updateNavButtons());
 
-    // Init — pass current URL so widget can detect invite/recovery tokens in the hash
+    // Init
     netlifyIdentity.init();
-
-    // Fallback: if invite or recovery token in hash, open widget after short delay
-    // to ensure the widget has fully initialised before opening
-    if (window.location.hash.includes('invite_token=') || window.location.hash.includes('recovery_token=')) {
-      setTimeout(() => netlifyIdentity.open(), 500);
-    }
   </script>
 
 </body>

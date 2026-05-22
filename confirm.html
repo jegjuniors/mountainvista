@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <!-- Netlify Identity Widget -->
+  <!-- Netlify Identity Widget — must load before any other scripts -->
   <script>
+    // Set API URL before widget loads so it can process the token correctly
     window.netlifyIdentity = window.netlifyIdentity || {};
     window.netlifyIdentity.APIUrl = 'https://mountainvistaestates.ca/.netlify/identity';
   </script>
@@ -65,11 +66,7 @@
     }
     .logo span { color: var(--pine); }
 
-    .status-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
+    .status-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
 
     h1 {
       font-family: var(--font-display);
@@ -117,18 +114,6 @@
     }
     .btn:hover { background: var(--pine-light); transform: translateY(-2px); }
 
-    .error-box {
-      display: none;
-      background: #fdecd8;
-      border: 1px solid var(--accent);
-      border-radius: 6px;
-      padding: 0.9rem 1rem;
-      font-size: 0.85rem;
-      color: var(--accent);
-      margin-top: 1rem;
-      text-align: left;
-    }
-
     .back-link {
       display: block;
       margin-top: 1.5rem;
@@ -138,11 +123,7 @@
     }
     .back-link:hover { color: var(--brown); }
 
-    /* State views */
-    #view-loading,
-    #view-setpassword,
-    #view-success,
-    #view-error { display: none; }
+    #view-loading, #view-setpassword, #view-success, #view-error { display: none; }
     #view-loading { display: block; }
   </style>
 </head>
@@ -151,25 +132,22 @@
   <div class="confirm-card">
     <a href="index.html" class="logo">Mountain <span>Vista</span> Estates</a>
 
-    <!-- Loading state -->
+    <!-- Loading -->
     <div id="view-loading">
       <span class="spinner"></span>
       <h1>Setting up your account…</h1>
       <p class="subtitle">Please wait while we prepare your member portal access.</p>
     </div>
 
-    <!-- Set password prompt (fallback if widget doesn't auto-open) -->
+    <!-- Set password fallback -->
     <div id="view-setpassword">
       <span class="status-icon">🔒</span>
       <h1>Set Your Password</h1>
       <p class="subtitle">Click the button below to set your password and activate your member account.</p>
       <button class="btn" id="openWidgetBtn">Set My Password</button>
-      <div class="error-box" id="errorBox">
-        Something went wrong. Your invite link may have expired — please contact the Water Co-op board for a new invitation.
-      </div>
     </div>
 
-    <!-- Success state -->
+    <!-- Success -->
     <div id="view-success">
       <span class="status-icon">✅</span>
       <h1>You're all set!</h1>
@@ -177,7 +155,7 @@
       <a href="index.html" class="btn">Go to the Site →</a>
     </div>
 
-    <!-- Error state -->
+    <!-- Error -->
     <div id="view-error">
       <span class="status-icon">⚠️</span>
       <h1>Link Expired</h1>
@@ -190,8 +168,6 @@
 
   <script>
     const hash = window.location.hash;
-    const hasInviteToken    = hash.includes('invite_token=');
-    const hasRecoveryToken  = hash.includes('recovery_token=');
 
     function show(viewId) {
       ['view-loading','view-setpassword','view-success','view-error'].forEach(id => {
@@ -199,39 +175,41 @@
       });
     }
 
-    // If no token at all — nothing to do here, go home
-    if (!hasInviteToken && !hasRecoveryToken) {
+    // If no token — redirect home
+    if (!hash.includes('invite_token=') && !hash.includes('recovery_token=')) {
       window.location.href = 'index.html';
     }
 
-    // Init Identity — it reads the hash token automatically
-    netlifyIdentity.init();
-
-    // On init, try to open the widget
-    netlifyIdentity.on('init', () => {
-      // Small delay to ensure widget is fully mounted
-      setTimeout(() => {
+    // Netlify Identity widget reads the hash token automatically during init
+    // The key is that APIUrl was set BEFORE the widget script loaded (in <head>)
+    netlifyIdentity.on('init', function(user) {
+      if (user) {
+        // Already logged in — go home
+        window.location.href = 'index.html';
+      } else {
+        // Show the set password button as fallback, then open widget
         show('view-setpassword');
         netlifyIdentity.open();
-      }, 600);
+      }
     });
 
-    // Fallback button in case auto-open fails
-    document.getElementById('openWidgetBtn').addEventListener('click', () => {
-      netlifyIdentity.open();
-    });
-
-    // On successful login (password set + logged in)
-    netlifyIdentity.on('login', () => {
+    netlifyIdentity.on('login', function() {
       netlifyIdentity.close();
       show('view-success');
     });
 
-    // On error
-    netlifyIdentity.on('error', (err) => {
+    netlifyIdentity.on('error', function(err) {
       console.error('Identity error:', err);
       show('view-error');
     });
+
+    // Fallback button
+    document.getElementById('openWidgetBtn').addEventListener('click', function() {
+      netlifyIdentity.open();
+    });
+
+    // Init — APIUrl already set via window.netlifyIdentity.APIUrl in <head>
+    netlifyIdentity.init();
   </script>
 
 </body>
