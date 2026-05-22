@@ -128,9 +128,16 @@
     }
     #view-loading { display: block; }
 
-    /* Make sure the Netlify widget modal sits on top of everything */
-    [data-netlify-identity-widget] {
+    /* Force Netlify Identity widget iframe to always be visible */
+    #netlify-identity-widget {
+      display: block !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
       z-index: 9999 !important;
+      border: none !important;
     }
   </style>
 </head>
