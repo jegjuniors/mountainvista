@@ -190,6 +190,8 @@
       .page-body { padding: 2rem 1.2rem 3rem; }
     }
   </style>
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -246,7 +248,7 @@
 
         <div class="emergency-card">
           <h4>⚠️ Water Emergency?</h4>
-          <p>For urgent issues (loss of service, contamination), <strong>email the Water Co-op immediately</strong> at <a href="mailto:watercoop@mountainvistaestates.ca">watercoop@mountainvistaestates.ca</a> and use the <strong>WhatsApp Emergency Chat</strong>.</p>
+          <p>For urgent issues (loss of service, contamination), <strong>email the Water Co-op immediately</strong> at <a href="mailto:watercoop@mountainvistaestates.ca">watercoop@mountainvistaestates.ca</a> and use the <strong><a href="https://chat.whatsapp.com/GO0Af7vDwoq1NMvVNVUIG8">WhatsApp Emergency Chat</a></strong>.</p>
         </div>
       </div>
 
@@ -328,6 +330,7 @@
       const success = document.getElementById('formSuccess');
       setTimeout(() => { form.style.display = 'none'; success.style.display = 'block'; }, 800);
     });
+    netlifyIdentity.init();
   </script>
 
 </body>

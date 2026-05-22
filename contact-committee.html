@@ -180,6 +180,8 @@
       .page-body { padding: 2rem 1.2rem 3rem; }
     }
   </style>
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -313,6 +315,7 @@
       const success = document.getElementById('formSuccess');
       setTimeout(() => { form.style.display = 'none'; success.style.display = 'block'; }, 800);
     });
+    netlifyIdentity.init();
   </script>
 
 </body>
