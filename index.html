@@ -468,6 +468,33 @@
       .stat-item { padding: 1.2rem 1.5rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
+    /* ── Finance gate ── */
+    .finance-gate-wrap { position: relative; }
+    .finance-gate-overlay {
+      position: absolute; inset: 0;
+      background: rgba(250,246,239,0.7);
+      backdrop-filter: blur(2px);
+      border-radius: var(--radius-lg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.6rem; z-index: 10; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .finance-gate-overlay:hover { background: rgba(250,246,239,0.8); }
+    .finance-gate-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #fff;
+      background: var(--pine); padding: 0.55rem 1.2rem;
+      border-radius: 99px; box-shadow: 0 4px 14px rgba(74,103,65,0.35);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .finance-gate-overlay:hover .finance-gate-badge { background: var(--pine-light); transform: translateY(-2px); }
+    .finance-gate-note { font-size: 0.78rem; color: var(--muted); }
+    .finance-amounts { transition: filter 0.4s ease; }
+    body:not(.member-logged-in) .finance-amounts { filter: blur(5px); user-select: none; }
+    body.member-logged-in .finance-gate-overlay { display: none; }
+
     /* ── Member gate modal ── */
     .gate-overlay {
       display: none; position: fixed; inset: 0; z-index: 999;
@@ -516,7 +543,7 @@
       <h3>Members Only</h3>
       <p>This document is available to Mountain Vista Estates Water Co-op members only. Please log in with your member account to download.</p>
       <button class="gate-btn" onclick="netlifyIdentity.open(); document.getElementById('gateOverlay').classList.remove('active');">Log In to Access Document</button>
-      <p class="gate-note">Don't have an account? Contact the Water Co-op board to request member access.</p>
+      <p class="gate-note">Don't have an account? <a href="contact-watercoop.html" style="color:var(--pine);font-weight:700;text-decoration:underline;">Contact the Water Co-op board</a> to request member access.</p>
     </div>
   </div>
 
@@ -1004,28 +1031,36 @@
       <div class="financials-layout">
         <div>
           <!-- 2026 Budget (most recent, from 2026 AGM Report) -->
-          <div class="finance-card reveal" style="margin-bottom:1.5rem">
+          <div class="finance-card reveal finance-gate-wrap" style="margin-bottom:1.5rem">
+            <div class="finance-gate-overlay" onclick="document.getElementById('gateOverlay').classList.add('active')">
+              <span class="finance-gate-badge">🔒 Members Only — Log In to View</span>
+              <span class="finance-gate-note">Financial figures are available to Water Co-op members</span>
+            </div>
             <h3>💧 Water Co-op — 2026 Approved Budget</h3>
             <div style="background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:700;margin-bottom:0.8rem;">⚠️ Under Review — Figures may contain errors. Do not rely on these amounts until updated.</div>
-            <div class="finance-row"><span class="label">Annual Fee per Lot <span style="font-size:0.78rem;color:var(--muted);font-weight:400;">(Total Budget ÷ 42 Lots + $100 Reserve + $50 Optional Community Committee Donation)</span></span><span class="amount">$574</span></div>
-            <div class="finance-row"><span class="label">Irrigation Water</span><span class="amount negative">−$8,500</span></div>
-            <div class="finance-row"><span class="label">Electricity (Cistern + Irrigation)</span><span class="amount negative">−$3,100</span></div>
-            <div class="finance-row"><span class="label">Insurance</span><span class="amount negative">−$4,000</span></div>
-            <div class="finance-row"><span class="label">Maintenance / Supplies</span><span class="amount negative">−$1,200</span></div>
-            <div class="finance-row"><span class="label">Cistern Cleaning</span><span class="amount negative">−$1,200</span></div>
-            <div class="finance-row"><span class="label">Bank Fees &amp; AB Fed Co-ops</span><span class="amount negative">−$1,000</span></div>
-            <div class="finance-row total"><span class="label">Total Budget</span><span class="amount">$17,800</span></div>
+            <div class="finance-row"><span class="label">Annual Fee per Lot <span style="font-size:0.78rem;color:var(--muted);font-weight:400;">(Total Budget ÷ 42 Lots + $100 Reserve + $50 Optional Community Committee Donation)</span></span><span class="amount finance-amounts">$574</span></div>
+            <div class="finance-row"><span class="label">Irrigation Water</span><span class="amount negative finance-amounts">−$8,500</span></div>
+            <div class="finance-row"><span class="label">Electricity (Cistern + Irrigation)</span><span class="amount negative finance-amounts">−$3,100</span></div>
+            <div class="finance-row"><span class="label">Insurance</span><span class="amount negative finance-amounts">−$4,000</span></div>
+            <div class="finance-row"><span class="label">Maintenance / Supplies</span><span class="amount negative finance-amounts">−$1,200</span></div>
+            <div class="finance-row"><span class="label">Cistern Cleaning</span><span class="amount negative finance-amounts">−$1,200</span></div>
+            <div class="finance-row"><span class="label">Bank Fees &amp; AB Fed Co-ops</span><span class="amount negative finance-amounts">−$1,000</span></div>
+            <div class="finance-row total"><span class="label">Total Budget</span><span class="amount finance-amounts">$17,800</span></div>
           </div>
           <!-- 2025 Actuals (from 2026 AGM Report) -->
-          <div class="finance-card reveal">
+          <div class="finance-card reveal finance-gate-wrap">
+            <div class="finance-gate-overlay" onclick="document.getElementById('gateOverlay').classList.add('active')">
+              <span class="finance-gate-badge">🔒 Members Only — Log In to View</span>
+              <span class="finance-gate-note">Financial figures are available to Water Co-op members</span>
+            </div>
             <h3>💧 Water Co-op — 2025 Year-End Actuals</h3>
             <div style="background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0.4rem 0.75rem;font-size:0.8rem;font-weight:700;margin-bottom:0.8rem;">⚠️ Under Review — Figures may contain errors. Do not rely on these amounts until updated.</div>
-            <div class="finance-row"><span class="label">Total Revenue</span><span class="amount positive">$25,661</span></div>
-            <div class="finance-row"><span class="label">Total Expenses</span><span class="amount negative">−$25,134</span></div>
-            <div class="finance-row"><span class="label">Net Income (Surplus)</span><span class="amount positive">$527</span></div>
-            <div class="finance-row"><span class="label">Reserve Fund Balance</span><span class="amount positive">$39,362</span></div>
-            <div class="finance-row"><span class="label">Cash on Hand</span><span class="amount positive">$5,246</span></div>
-            <div class="finance-row total"><span class="label">Total Assets</span><span class="amount positive">$132,870</span></div>
+            <div class="finance-row"><span class="label">Total Revenue</span><span class="amount positive finance-amounts">$25,661</span></div>
+            <div class="finance-row"><span class="label">Total Expenses</span><span class="amount negative finance-amounts">−$25,134</span></div>
+            <div class="finance-row"><span class="label">Net Income (Surplus)</span><span class="amount positive finance-amounts">$527</span></div>
+            <div class="finance-row"><span class="label">Reserve Fund Balance</span><span class="amount positive finance-amounts">$39,362</span></div>
+            <div class="finance-row"><span class="label">Cash on Hand</span><span class="amount positive finance-amounts">$5,246</span></div>
+            <div class="finance-row total"><span class="label">Total Assets</span><span class="amount positive finance-amounts">$132,870</span></div>
           </div>
         </div>
         <div>
@@ -1347,6 +1382,8 @@
       const loggedIn = isLoggedIn();
       document.getElementById('member-login-btn').style.display = loggedIn ? 'none' : 'inline-block';
       document.getElementById('member-logout-btn').style.display = loggedIn ? 'inline-block' : 'none';
+      // Toggle body class for CSS-driven finance blur
+      document.body.classList.toggle('member-logged-in', loggedIn);
     }
 
     // Netlify Identity events
