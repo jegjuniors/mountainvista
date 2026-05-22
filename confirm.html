@@ -5,223 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Member Access — Mountain Vista Estates</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <script>
-    // Must be set BEFORE the widget script loads
     window.netlifyIdentity = window.netlifyIdentity || {};
     window.netlifyIdentity.APIUrl = 'https://mountainvistaestates.ca/.netlify/identity';
   </script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --cream:      #faf6ef;
-      --sand:       #e8d9c0;
-      --tan:        #c9a97a;
-      --brown:      #8b6340;
-      --dark:       #3a2a1a;
-      --pine:       #4a6741;
-      --pine-light: #6a9165;
-      --accent:     #c0622a;
-      --muted:      #9a8070;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body:    'Lato', sans-serif;
-    }
-
     body {
-      font-family: var(--font-body);
-      background: var(--cream);
-      color: var(--dark);
+      font-family: 'Lato', sans-serif;
+      background: #faf6ef;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
     }
-
-    .confirm-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 40px rgba(58,42,26,0.14);
-      padding: 3rem 2.5rem;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      border-top: 4px solid var(--pine);
-    }
-
-    .logo {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--brown);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 2rem;
-    }
-    .logo span { color: var(--pine); }
-
-    .status-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .subtitle {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1.8rem;
-    }
-
     .spinner {
-      display: inline-block;
-      width: 36px; height: 36px;
-      border: 3px solid var(--sand);
-      border-top-color: var(--pine);
+      width: 40px; height: 40px;
+      border: 3px solid #e8d9c0;
+      border-top-color: #4a6741;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
-      margin-bottom: 1rem;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: var(--pine);
-      color: #fff;
-      border: none;
-      border-radius: 99px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 18px rgba(74,103,65,0.35);
-      transition: background 0.2s, transform 0.2s;
-      margin-top: 0.5rem;
-    }
-    .btn:hover { background: var(--pine-light); transform: translateY(-2px); }
-
-    .back-link {
-      display: block;
-      margin-top: 1.5rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .back-link:hover { color: var(--brown); }
-
-    /* All views hidden by default */
-    #view-loading, #view-ready, #view-success, #view-error {
-      display: none;
-    }
-    #view-loading { display: block; }
-
-    /* Force Netlify Identity widget iframe to always be visible */
+    /* Force widget iframe visible */
     #netlify-identity-widget {
       display: block !important;
       position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
+      top: 0 !important; left: 0 !important;
+      width: 100% !important; height: 100% !important;
       z-index: 9999 !important;
       border: none !important;
     }
   </style>
 </head>
 <body>
-
-  <div class="confirm-card">
-    <a href="index.html" class="logo">Mountain <span>Vista</span> Estates</a>
-
-    <!-- Loading -->
-    <div id="view-loading">
-      <span class="spinner"></span>
-      <h1>One moment…</h1>
-      <p class="subtitle">Setting up your member account.</p>
-    </div>
-
-    <!-- Ready — widget failed to auto-open, show manual button -->
-    <div id="view-ready">
-      <span class="status-icon">🔒</span>
-      <h1>Set Your Password</h1>
-      <p class="subtitle">Click below to set your password and activate your member account.</p>
-      <button class="btn" id="openWidgetBtn">Set My Password</button>
-    </div>
-
-    <!-- Success -->
-    <div id="view-success">
-      <span class="status-icon">✅</span>
-      <h1>You're all set!</h1>
-      <p class="subtitle">Your member account is active. You now have access to all member documents.</p>
-      <a href="index.html" class="btn">Go to the Site →</a>
-    </div>
-
-    <!-- Error / expired -->
-    <div id="view-error">
-      <span class="status-icon">⚠️</span>
-      <h1>Link Expired</h1>
-      <p class="subtitle">This invite link has already been used or has expired. Contact the Water Co-op board for a new invitation.</p>
-      <a href="contact-watercoop.html" class="btn">Contact the Water Co-op</a>
-    </div>
-
-    <a href="index.html" class="back-link">← Back to Mountain Vista Estates</a>
-  </div>
+  <div class="spinner"></div>
 
   <script>
-    function show(viewId) {
-      ['view-loading','view-ready','view-success','view-error'].forEach(function(id) {
-        document.getElementById(id).style.display = (id === viewId) ? 'block' : 'none';
-      });
-    }
-
-    // Redirect home if no token in URL
-    var hash = window.location.hash;
-    if (!hash.includes('invite_token=') && !hash.includes('recovery_token=')) {
+    // Redirect home if no token
+    if (!window.location.hash.includes('invite_token=') && !window.location.hash.includes('recovery_token=')) {
       window.location.href = 'index.html';
     }
 
-    // Manual button fallback
-    document.getElementById('openWidgetBtn').addEventListener('click', function() {
-      netlifyIdentity.open();
-    });
-
-    // On successful login / password set
+    // On successful password set → go to site
     netlifyIdentity.on('login', function() {
       netlifyIdentity.close();
-      show('view-success');
+      window.location.href = 'index.html';
     });
 
-    // On error
-    netlifyIdentity.on('error', function(err) {
-      console.error('Identity error:', err);
-      show('view-error');
-    });
-
-    // Init — widget reads the hash token automatically and opens its own UI
-    // We show the manual button after a delay in case auto-open doesn't fire
     netlifyIdentity.init();
-
-    // After 2s, if still on loading screen, show the manual button
-    setTimeout(function() {
-      var loading = document.getElementById('view-loading');
-      if (loading.style.display !== 'none') {
-        show('view-ready');
-      }
-    }, 2000);
   </script>
-
 </body>
 </html>
