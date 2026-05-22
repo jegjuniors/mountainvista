@@ -1416,6 +1416,14 @@
     });
     netlifyIdentity.on('logout', () => updateNavButtons());
 
+    // Handle Netlify Identity invite + recovery tokens in URL
+    if (window.location.hash && (
+      window.location.hash.includes('invite_token=') ||
+      window.location.hash.includes('recovery_token=')
+    )) {
+      netlifyIdentity.open();
+    }
+
     // Init
     netlifyIdentity.init();
   </script>
