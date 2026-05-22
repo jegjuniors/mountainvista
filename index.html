@@ -1409,13 +1409,6 @@
     // Netlify Identity events
     netlifyIdentity.on('init', () => {
       updateNavButtons();
-      // Handle invite + password recovery tokens in URL
-      if (window.location.hash && (
-        window.location.hash.includes('invite_token=') ||
-        window.location.hash.includes('recovery_token=')
-      )) {
-        netlifyIdentity.open();
-      }
     });
     netlifyIdentity.on('login', (user) => {
       updateNavButtons();
@@ -1425,8 +1418,14 @@
     });
     netlifyIdentity.on('logout', () => updateNavButtons());
 
-    // Init
-    netlifyIdentity.init();
+    // Init — pass current URL so widget can detect invite/recovery tokens in the hash
+    netlifyIdentity.init({ APIUrl: 'https://mountainvistaestates.ca/.netlify/identity' });
+
+    // Fallback: if invite or recovery token in hash, open widget after short delay
+    // to ensure the widget has fully initialised before opening
+    if (window.location.hash.includes('invite_token=') || window.location.hash.includes('recovery_token=')) {
+      setTimeout(() => netlifyIdentity.open(), 500);
+    }
   </script>
 
 </body>
