@@ -1,5 +1,5 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 21, 2026 · Hero replaced with full-width Site_Hero-Image.png · text overlay + sign strip removed · Learn More hotspot added_
+_Last updated: May 21, 2026 · 2026 AGM financials flagged Under Review · Water Co-op board 7th spot added (Looking for Volunteers)_
 
 ---
 
@@ -65,10 +65,10 @@ mountainvista/                          ← GitHub repo root
 | Fire Ban Strip | #fireban-strip | ✅ Manual | Slim bar above Survey Strip — change data-status to update |
 | Survey Strip | .survey-strip | ⏳ Temporary | Orange/accent gradient bar — remove after May 29, 2026 @ 5pm when survey closes |
 | Announcements | #announcements | ✅ Real data | 8 cards — cards 1, 2 & 3 highlighted |
-| Boards | #boards | ✅ Real data | Water Co-op: 6 members; Committee: 6 members |
+| Boards | #boards | ✅ Real data | Water Co-op: 7 slots (6 members + 1 open/volunteer); Committee: 6 members |
 | Survey Results | #survey | ✅ Real data | 2026 survey (37 responses) |
 | Meetings | #meetings | ✅ Real data | 4 past meeting cards |
-| Financials | #financials | ✅ Real data | 2026 budget + 2025 actuals + doc archive |
+| Financials | #financials | ⚠️ Under Review | 2026 budget + 2025 actuals flagged Under Review (erroneous data); doc archive entry also flagged |
 | Meeting Minutes | #minutes | ✅ Real data | 6 AGM entries, all PDF links |
 | FAQ | #faq | ⏳ Coming Soon | Pending board approval — placeholder section + announcement card + nav link |
 | Contact Form | #contact | ✅ Complete | Two choice cards → separate pages; new @mountainvistaestates.ca emails |
@@ -112,15 +112,16 @@ To update, find this line in index.html and change data-status:
 
 ## Current Board Members
 
-### Water Co-op Board (6 members — updated May 2026)
+### Water Co-op Board (7 slots — 6 members + 1 open · updated May 2026)
 | Name | Role | Email |
 |---|---|---|
 | Keith Wagner | President | catapultdesigns@shaw.ca |
 | Gina Rebere | Vice President | ginarebere@gmail.com |
 | Kylee Gairns | Secretary | kylee.gairns666@gmail.com |
 | Julio Gonzalez | Communications Officer | — |
-| Dennis Dumais | Member | — |
+| Denis Dumais | Treasurer | — |
 | Brett Hutchinson | Member | — |
+| *(Open Position)* | 🙋 Looking for Volunteers | — |
 
 ### Community Committee (6 members)
 | Name | Role | Email |
@@ -182,14 +183,16 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf
 
 ## Financials
 
-### 2026 Approved Budget
+### 2026 Approved Budget ⚠️ Under Review
 - Annual Fee per Lot: $574 (Total Budget ÷ 42 Lots + $100 Reserve + $50 Optional Community Committee Donation)
 - Total budget: $17,800 · Due July 1, 2026
 - Line items: Irrigation $8,500 · Electricity $3,100 · Insurance $4,000 · Cistern Cleaning $1,200
 
-### 2025 Year-End Actuals
+### 2025 Year-End Actuals ⚠️ Under Review
 - Revenue: $25,661 · Expenses: $25,134 · Net Income: $527
 - Reserve Fund: $39,362 · Cash: $5,246 · Total Assets: $132,870
+
+> ⚠️ Both 2026 financials cards, the AGM announcement card, and the 2026 AGM Report archive entry are flagged "Under Review" due to identified errors. Remove flags once corrected report is issued.
 
 ### Governance Documents (all download links)
 - Emergency Response Plan v4.1 (PDF, Dec 9 2024)
