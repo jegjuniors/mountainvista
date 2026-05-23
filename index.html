@@ -123,9 +123,13 @@
     }
     @media (max-width: 600px) {
       .hero-btns-overlay {
-        bottom: 1%;
+        position: static;
+        transform: none;
+        background: var(--dark);
+        padding: 1rem;
         gap: 0.6rem;
-        width: 90%;
+        width: 100%;
+        justify-content: center;
       }
       .hero-btns-overlay .btn {
         padding: 0.65rem 1.4rem;
@@ -172,6 +176,12 @@
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--tan); }
     .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.15rem; }
+    @media (max-width: 600px) {
+      .stats-strip { flex-wrap: nowrap; }
+      .stat-item { padding: 0.75rem 0; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
+      .stat-num { font-size: 1.3rem; }
+      .stat-label { font-size: 0.6rem; letter-spacing: 0.06em; }
+    }
     @media (max-width: 600px) {
       .stats-strip { flex-wrap: nowrap; }
       .stat-item { padding: 0.75rem 0; flex: 1; border-right: 1px solid rgba(255,255,255,0.1); }
@@ -758,6 +768,7 @@
           <div class="ann-tag">💧 Water Co-op</div>
           <h3>Irrigation Water Is On for the Season</h3>
           <p>Irrigation water has been turned on for the 2026 season. Please conserve water. Do not use your cistern water for irrigation — use the irrigation tap only.</p>
+          <p style="margin-top:0.6rem;">The community's irrigation system is governed by the <strong>United Irrigation District (UID)</strong>. The Water Co-op facilitates communication between residents and the UID — for irrigation district inquiries, visit <a href="https://www.uidistrict.com/" target="_blank" rel="noopener" style="color:var(--brown);font-weight:700;">uidistrict.com ↗</a>.</p>
           <div class="ann-date">📅 Updated: May 19, 2026 — Water Co-op</div>
         </div>
 
@@ -781,7 +792,8 @@
         <div class="announcement-card reveal">
           <div class="ann-tag">🔔 Notice</div>
           <h3>Septic Service Reminder — Jim Beck</h3>
-          <p>Residents are encouraged to check their septic tanks and arrange pump-outs as needed. If your trailer is full, please use the transfer station. Contact Jim Beck for service.</p>
+          <p>Jim Beck is a local farm owner and contractor who provides septic tank servicing for Mountain Vista Estates and surrounding communities. Residents are encouraged to check their tanks and arrange pump-outs as needed.</p>
+          <p style="margin-top:0.6rem;">📞 <a href="tel:4033821839" style="color:var(--brown);font-weight:700;">(403) 382-1839</a> &nbsp;·&nbsp; ✉️ <a href="mailto:brendakqbeck@hotmail.com" style="color:var(--brown);font-weight:700;">brendakqbeck@hotmail.com</a></p>
           <div class="ann-date">📅 Posted: Apr 27, 2026 — Community Committee</div>
         </div>
 
