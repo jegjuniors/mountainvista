@@ -1,11 +1,11 @@
 # Mountain Vista Estates — Project Handoff
-_Last updated: May 23, 2026 · May 18 minutes added + amended; board roster updated; septic card updated; footer timestamp added_
+_Last updated: May 27, 2026 · Survey link replaced (technical issues); deadline extended to June 5; stats strip updated; nav updated; survey strip colour changed to red; footer timestamp format updated to MDT_
 
 ---
 
 ## Project Overview
 
-A community website for **Mountain Vista Estates**, a small hamlet of 42 lots in **Cardston County, Alberta (T0K 1W0)**. The site serves as a central communication hub for two volunteer-run governing bodies:
+A community website for **Mountain Vista Estates**, a small hamlet of 42 lots in **Cardston County, Alberta (T0K 1W0)**. The site serves as a central communication hub for two volunteer-run bodies:
 
 - **Mountain Vista Water Co-op** — manages potable water, infrastructure, snow removal, regulatory compliance
 - **Community Committee** — manages events, common areas, garbage, pond, beautification
@@ -60,13 +60,13 @@ mountainvista/                          ← GitHub repo root
 
 | Section | ID | Status | Notes |
 |---|---|---|---|
-| Navigation | nav | ✅ Complete | Sticky, mobile hamburger; News · Boards · Survey · Meetings · Financials · Minutes · Contact + 🔒 Member Login button |
+| Navigation | nav | ✅ Complete | Sticky, mobile hamburger; News · **Board/Committee** · Survey · Meetings · Financials · Minutes · Contact + 🔒 Member Login button |
 | Hero | .hero | ✅ Updated | Full-width Site_Hero-Image.png; text overlay removed; buttons flow below image on mobile |
 | Sign Strip | .sign-strip | 🗑️ Removed | No longer needed — sign content is in hero image |
-| Stats Strip | .stats-strip | ✅ Complete | 42 lots, 2 boards, 1 co-op, 2026 fiscal year — single row compact on mobile |
+| Stats Strip | .stats-strip | ✅ Complete | 42 lots, **2 Volunteer Bodies**, 1 co-op, 2026 fiscal year — single row compact on mobile |
 | Fire Ban Strip | #fireban-strip | ✅ Manual | Slim bar above Survey Strip — change data-status to update |
-| Survey Strip | .survey-strip | ⏳ Temporary | Orange/accent gradient bar — **remove after May 29, 2026 @ 5pm** when survey closes |
-| Announcements | #announcements | ✅ Real data | 9 cards — cards 1, 2 & 3 highlighted; card 3 = May 18 board meeting minutes |
+| Survey Strip | .survey-strip | ⏳ Temporary | **Red** gradient bar — **remove after June 5, 2026 @ 5pm** when survey closes |
+| Announcements | #announcements | ✅ Real data | 9 cards — cards 1, 2 & 3 highlighted; card 2 = updated survey link notice |
 | Boards | #boards | ✅ Real data | Water Co-op: 6 members + 1 open position; Committee: 6 members |
 | Survey Results | #survey | ✅ Real data | 2026 survey (37 responses) |
 | Meetings | #meetings | ✅ Real data | 4 past meeting cards |
@@ -74,7 +74,34 @@ mountainvista/                          ← GitHub repo root
 | Meeting Minutes | #minutes | ✅ Gated | 7 entries incl. May 18 board meeting; all PDF links gated |
 | FAQ | #faq | ⏳ Coming Soon | Pending board approval — placeholder section + announcement card + nav link |
 | Contact Form | #contact | ✅ Complete | Two choice cards → separate pages; new @mountainvistaestates.ca emails |
-| Footer | footer | ✅ Complete | www.mountainvistaestates.ca · Last updated timestamp added May 23, 2026 |
+| Footer | footer | ✅ Complete | www.mountainvistaestates.ca · Last updated: May 27, 2026 — 2:30 PM MDT |
+
+---
+
+## Survey Strip — Updated May 27, 2026
+
+- **Colour:** Deep crimson-to-red gradient (`#7a0f0f → #b81c1c → #cc2a2a`) — changed from orange
+- **Label:** "Community Committee Follow-up Survey — New Link"
+- **Current link:** `https://forms.gle/jg6wReoqHeX2qf1E7`
+- **Deadline displayed:** June 5, 2026 @ 5pm
+- **HTML comment:** `<!-- REMOVE this strip after June 5, 2026 @ 5pm (survey closes) -->`
+- **Background on previous link:** Original survey had technical issues with duplicate entries — new link launched May 27, 2026; residents asked to include cabin number; responses remain confidential
+
+---
+
+## Announcements — 9 Cards
+
+| # | Title | Tag | Date |
+|---|---|---|---|
+| 1 ⭐ | FAQ Section — Coming Soon | 📋 Community | May 2026 |
+| 2 ⭐ | Community Committee Follow-up Survey — Updated Link | 📋 Survey — New Link | Updated May 27, 2026 |
+| 3 ⭐ | May 18 Board Meeting — Minutes Now Available | 📋 Water Co-op | May 19 · Amended May 23, 2026 |
+| 4 | 2026 AGM Minutes — Now Available | 📋 Water Co-op | April 18, 2026 |
+| 5 | GCBD Rules & Regulations | 📋 Notice | May 20, 2026 |
+| 6 | Irrigation Water Is On for the Season | 💧 Water Co-op | May 19, 2026 |
+| 7 | Speed Bumps & Sign Reinstalled | 🏘️ Community | May 7, 2026 |
+| 8 | Pond Fountain Is In for the Season | 🌊 Community | May 2, 2026 |
+| 9 | Septic Service — Beck's Septic & Gravel | 🔔 Notice | Apr 27, 2026 |
 
 ---
 
@@ -165,8 +192,9 @@ mountainvista/                          ← GitHub repo root
 
 ---
 
-## Stats Strip — Updated May 22, 2026
+## Stats Strip — Updated May 27, 2026
 
+- Tile 2 label: **"Volunteer Bodies"** (was "Governing Boards")
 - Desktop: 4 items in a row with `1.6rem 3rem` padding, `2rem` stat numbers
 - **Mobile (≤600px):** `flex-wrap: nowrap` — all 4 stats in a single compact row
   - Padding: `0.75rem 0`, each item `flex: 1`
@@ -174,31 +202,25 @@ mountainvista/                          ← GitHub repo root
 
 ---
 
+## Navigation — Updated May 27, 2026
+
+- "Boards" menu item renamed to **"Board/Committee"** (link still anchors to `#boards`)
+
+---
+
 ## Fire Ban Strip
 
-Slim bar between Stats Strip and Survey Strip. **Manual update only.**
-
-To update, find this line in index.html and change data-status:
-```html
-<div class="fireban-strip" id="fireban-strip" data-status="none">
-```
-
-| Value | Colour | Badge |
-|---|---|---|
-| none | Green | No Restriction |
-| advisory | Amber | Fire Advisory |
-| restriction | Orange | Fire Restriction |
-| ban | Red | Fire Ban |
-
-"Full Map" link always points to https://www.albertafirebans.ca
-
-> Live API attempts failed — Alberta government ArcGIS API blocks both browser CORS and server-side requests. Manual strip is the permanent solution.
+Change `data-status` on `#fireban-strip` div:
+- `none` → strip hidden
+- `advisory` → yellow bar
+- `restriction` → orange bar
+- `ban` → red bar
 
 ---
 
 ## Current Board Members
 
-### Water Co-op Board (6 members — updated May 23, 2026)
+### Water Co-op Board
 | Name | Role |
 |---|---|
 | Keith Wagner | President |
@@ -209,13 +231,7 @@ To update, find this line in index.html and change data-status:
 | Brett Hutchinson | Member — no voting rights |
 | _(Open Position)_ | _(Looking for Volunteers)_ |
 
-> Personal emails removed from site. Board contact via watercoop@mountainvistaestates.ca only.
-> Dave May, Shane McMorrow, and Sarah Greer resigned May 18, 2026.
-> Shane McMorrow remains as Lead Operator (advisory, non-board, no voting rights).
-> Brett Hutchinson has no voting rights until an odd number of voting board members is achieved.
-> One open position shown on site board roster card.
-
-### Community Committee (6 members)
+### Community Committee
 | Name | Role |
 |---|---|
 | Gina Rebere | Committee Member |
@@ -225,101 +241,22 @@ To update, find this line in index.html and change data-status:
 | Debra Glaister | Committee Member |
 | Caroline Allain | Committee Member |
 
-> Personal emails removed from site. Committee contact via mvecommittee@mountainvistaestates.ca only.
-
-### Board Email Buttons
-- Email the Water Co-op → watercoop@mountainvistaestates.ca
-- Email the Community Committee → mvecommittee@mountainvistaestates.ca
-
----
-
-## Announcements — 9 Cards
-
-Cards 1, 2 & 3 highlighted: 5px left border + 3px coloured top stripe + tinted shadow.
-
-| # | Title | Tag | Date |
-|---|---|---|---|
-| 1 ⭐ | FAQ Section — Coming Soon | 📋 Community | May 2026 |
-| 2 ⭐ | Community Committee Follow-up Survey — Have Your Say! | 📋 Survey — Action Required | May 15, 2026 |
-| 3 ⭐ | May 18 Board Meeting — Minutes Now Available | 📋 Water Co-op | May 19, 2026 · Amended May 23, 2026 |
-| 4 | 2026 AGM Minutes — Now Available | 📋 Water Co-op | April 18, 2026 |
-| 5 | Irrigation Water Is On for the Season | 💧 Water Co-op | May 19, 2026 |
-| 6 | GCBD Rules & Regulations — Important Notice for Lot Owners | 📋 Notice | May 20, 2026 |
-| 7 | Speed Bumps & Sign Reinstalled | 🏘️ Community | May 7, 2026 |
-| 8 | Pond Fountain Is In for the Season | 🌊 Community | May 2, 2026 |
-| 9 | Septic Service — Beck's Septic & Gravel | 🔔 Notice | Apr 27, 2026 |
-
-### Announcement Card Notes
-- **Card 3 — May 18 Minutes:** Full summary including all board appointments, voting rights, Shane as Lead Operator, and all action item statuses. Amended May 23, 2026. Links to `docs/WaterCoop_MeetingMinutes_May18_2026.pdf`
-- **Card 5 — Irrigation:** Water is on for 2026 season. UID governs irrigation; Water Co-op facilitates communication. Link: https://www.uidistrict.com/
-- **Card 9 — Beck's Septic & Gravel:** Contact Jim Beck · 403-382-1839 · jim@becksltd.com
-
-> **Survey strip** sits between fire ban strip and announcements. Remove after May 29, 2026 @ 5pm (survey deadline). Strip links to: https://docs.google.com/forms/d/e/1FAIpQLSfXsDGqBQpFis2L3WZMzun8cW_H9XiAdGD9BKqsmXx0PPpAWw/viewform
-
 ---
 
 ## Survey Results Section
 
-Based on Community Committee survey sent April 27, 2026 — 37 respondents.
-
-Approved: Pond Pellets 54.1% · Equipment Shed 70.3% · Weed Spraying 67.6% · August Long 54.1% · NYE Fireworks 56.8%
-Not Supported: New Garbage Trailer 75.7% · Dog Park 83.8% · Dog Park Fencing 91.9% · Stray Animal Fund 67.6%
-Priority Pills: Pond 32.4% · Shed 27.0% · Weed Spraying 24.3% · Garbage Trailer 10.8%
-Both download buttons → docs/MountainVista_Community_Survey_2026.pdf (public)
-
----
-
-## Meetings Section
-
-| Date | Event |
-|---|---|
-| May 18, 2026 | Water Co-op Board Meeting — board appointments, financial separation, irrigation, shed placement |
-| April 18, 2026 | 2026 AGM — 2025 financials, $574/lot budget, board elections |
-| January 28, 2026 | Water Co-op Board Meeting — rules review, AGM planning, generator confirmed |
-| June 4, 2025 | Community Improvement Meeting — survey results, speed bumps, August Long planning |
-
----
-
-## May 18, 2026 Board Meeting — Key Details
-
-**Status:** Approved · Amended May 23, 2026
-**PDF:** `docs/WaterCoop_MeetingMinutes_May18_2026.pdf`
-**Build script:** `/home/claude/build_minutes_pdf.py` (Claude session — recreate in new session if needed)
-
-### Board Appointments Confirmed
-| Name | Role | Notes |
-|---|---|---|
-| Keith Wagner | President | Acclaimed |
-| Gina Rebere | Vice President | Voted |
-| Kylee Gairns | Secretary | Voted |
-| Julio Gonzalez | Communications Officer | Voted |
-| Denis Dumais | Treasurer | Voted |
-| Brett Hutchinson | Member | No voting rights until odd number of voting members achieved |
-| Shane McMorrow | Lead Operator | Non-board, advisory, no voting rights |
-
-### Action Items Status
-| Item | Status |
-|---|---|
-| AFRWC, Rural Utilities Act & pertinent docs acquired, under review | In Progress |
-| Co-op manual development | In Progress |
-| Website & members-only area | Complete |
-| Financial account separation (co-op vs. committee) | In Progress |
-| Financial books finalization (Dave May) | In Progress |
-| Water filter identification & ordering | In Progress |
-| Shed placement | Complete |
-| All votes and admissions | Complete |
+- 2026 Community Survey — 37 responses
+- Public PDF: `MountainVista_Community_Survey_2026.pdf`
 
 ---
 
 ## Financials
 
-### 2026 Approved Budget 🔒 Members Only
-- Annual Fee per Lot: $574 (Total Budget ÷ 42 Lots + $100 Reserve + $50 Optional Community Committee Donation)
-- Total budget: $17,800 · Due July 1, 2026
-- Line items: Irrigation $8,500 · Electricity $3,100 · Insurance $4,000 · Cistern Cleaning $1,200
+### 2026 Approved Budget 🔒 (Under Review)
+- $574/lot · Total $17,800 · Irrigation $8,500 · Electricity $3,100 · Insurance $4,000 · Cistern $1,200
 
-### 2025 Year-End Actuals 🔒 Members Only
-- Revenue: $25,661 · Expenses: $25,134 · Net Income: $527
+### 2025 Year-End Actuals 🔒 (Under Review)
+- Revenue: $25,661 · Expenses: $25,134 · Net: $527
 - Reserve Fund: $39,362 · Cash: $5,246 · Total Assets: $132,870
 
 ### Governance Documents
@@ -366,12 +303,12 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf (public)
 
 ---
 
-## Footer — Updated May 23, 2026
+## Footer — Updated May 27, 2026
 
 - Copyright © 2026
 - **Last updated timestamp** below copyright line — subtle (0.72rem, 20% white opacity)
-- Format: `Last updated: May 23, 2026 — 11:45 PM MT`
-- **Update this manually each time changes are deployed**
+- Format: `Last updated: May 27, 2026 — 2:30 PM MDT`
+- **Use MDT (Mountain Daylight Time) going forward** — update manually on each deploy
 
 ---
 
@@ -400,6 +337,8 @@ Both download buttons → docs/MountainVista_Community_Survey_2026.pdf (public)
 --accent:     #c0622a
 --muted:      #9a8070
 ```
+
+Survey strip red gradient (not a CSS variable): `#7a0f0f → #b81c1c → #cc2a2a`
 
 ### Typography
 - Display: Playfair Display (Google Fonts)
@@ -455,6 +394,7 @@ Pages with meta tag:
 - APIUrl must be set via `window.netlifyIdentity.APIUrl` BEFORE the widget script tag loads
 - Stats strip mobile fix kept getting lost due to version drift — always verify CSS before pushing
 - May 18 minutes PDF generated via reportlab — build script at /home/claude/build_minutes_pdf.py (recreate in new session)
+- Survey link replaced May 27 2026: original link had technical glitches and duplicate entries; new link is https://forms.gle/jg6wReoqHeX2qf1E7; deadline extended to June 5, 2026
 
 ---
 
@@ -473,7 +413,7 @@ Script location: /home/claude/build_erp_pdf.py (Claude session — recreate in n
 3. Make edits and push changed files to GitHub
 4. Netlify auto-deploys on push
 5. Ask Claude to update CURRENT_STATE.md after changes
-6. **Update the footer timestamp** in index.html to reflect the date/time of changes
+6. **Update the footer timestamp** in index.html — use MDT (Mountain Daylight Time) format
 
 > Never use target="_blank" on doc links — always use download attribute.
 > Keep _headers in repo root at all times.
@@ -489,7 +429,7 @@ Script location: /home/claude/build_erp_pdf.py (Claude session — recreate in n
 - AGM presentation slides (PowerPoint)
 - Fire ban auto-update if Alberta API ever adds CORS support
 - **FAQ section** — replace coming-soon placeholder with real FAQ content once board approves
-- Remove survey strip after May 29, 2026 @ 5pm
+- **Remove survey strip after June 5, 2026 @ 5pm**
 
 ---
 
